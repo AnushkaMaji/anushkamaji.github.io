@@ -169,6 +169,7 @@
     }
 
     .button-row {
+      justify-content: center;
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -650,7 +651,8 @@
     @media (max-width: 980px) {
       .hero-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
       .hero-copy { text-align: center; }
-      .button-row { justify-content: center; }
+      .button-row {
+      justify-content: center; justify-content: center; }
       .about-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid .stat:last-child { grid-column: 1 / -1; }
