@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anushka Maji | ML Engineer & SRE</title>
+  <meta name="description" content="Portfolio of Anushka Maji — ML Engineer, SRE, Cloud Infrastructure. FastAPI, Kubernetes, Kafka, AWS, MLflow, Docker." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       COLOR SYSTEM AND GLOBAL TOKENS
+       ============================================================ */
+    :root {
+      --cream: #f5f0e8;
+      --lavender: #d4c5ee;
+      --deep-lavender: #9370c0;
+      --button-purple: #7a4fa3;
+      --sage: #8aab6e;
+      --light-sage: #d4e8c2;
+      --plum: #3a1f52;
+      --footer-plum: #2a1440;
+      --ink: #23162f;
+      --white: #ffffff;
+      --soft-shadow: 0 26px 70px rgba(58, 31, 82, 0.16);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Jost", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+      --max-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--plum);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: var(--button-purple);
+      margin-bottom: 18px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: currentColor;
+      display: inline-block;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 900ms ease, transform 900ms cubic-bezier(.19,1,.22,1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(212, 197, 238, 0.42), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(212, 232, 194, 0.38), transparent 30%);
+      opacity: 0;
+      animation: pageWake 1.2s ease 0.25s forwards;
+      z-index: -2;
+    }
+
+    @keyframes pageWake { to { opacity: 1; } }
+
+    .hero-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+
+
+    .hero-copy {
+      opacity: 1;
+      max-width: 720px;
+      width: 100%;
+    }
+
+
+    .eyebrow {
+      font-size: 0.83rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 8.8vw, 7rem);
+      line-height: 0.82;
+      margin: 0;
+      color: var(--plum);
+      letter-spacing: -0.055em;
+    }
+
+    h1 span { display: block; }
+
+    .tagline {
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+      color: rgba(58, 31, 82, 0.78);
+      margin: 30px 0 10px;
+      letter-spacing: 0.035em;
+    }
+
+    .tagline-sub {
+      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+      color: rgba(58, 31, 82, 0.55);
+      margin: 0 0 28px;
+      font-family: var(--mono);
+      letter-spacing: 0.01em;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: buttonRise 700ms ease 0.8s forwards;
+    }
+
+    @keyframes buttonRise { to { opacity: 1; transform: translateY(0); } }
+
+    .btn {
+      min-width: 136px;
+      padding: 13px 21px;
+      border-radius: 999px;
+      border: 1.5px solid var(--button-purple);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 24px rgba(122, 79, 163, 0.18); }
+    .btn-primary { background: var(--button-purple); color: white; }
+    .btn-outline { color: var(--button-purple); background: rgba(255,255,255,0.25); }
+
+    .scroll-nudge {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(58, 31, 82, 0.56);
+      opacity: 0;
+      animation: nudgeIn 800ms ease 1.2s forwards;
+    }
+
+    .scroll-nudge::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 38px;
+      margin: 10px auto 0;
+      background: var(--sage);
+      animation: nudgeLine 1.5s ease-in-out infinite;
+    }
+
+    @keyframes nudgeIn { to { opacity: 1; } }
+    @keyframes nudgeLine { 0%,100% { transform: scaleY(0.45); opacity: .45; } 50% { transform: scaleY(1); opacity: 1; } }
+
+
+
+    /* Butterfly */
+    .butterfly-wrap {
+      position: fixed;
+      left: calc(100vw - 190px);
+      top: -170px;
+      width: 160px;
+      height: 150px;
+      z-index: 10;
+      transform-origin: center;
+      animation: butterflyFlight 3.05s cubic-bezier(.42,0,.22,1) 0.85s forwards,
+                 butterflySettle 1.1s ease-in-out 3.9s forwards;
+    }
+
+    @keyframes butterflyFlight {
+      0% { left: calc(100vw - 190px); top: -170px; width: 160px; transform: rotate(-18deg) translate(0, 0); }
+      18% { transform: rotate(-7deg) translate(-18px, 30px); }
+      39% { transform: rotate(-20deg) translate(22px, -10px); }
+      63% { transform: rotate(10deg) translate(-20px, 24px); }
+      100% { left: calc((100vw - min(1180px, 100vw)) / 2 + 272px); top: 172px; width: 160px; transform: rotate(-13deg) translate(0, 0); }
+    }
+
+    @keyframes butterflySettle {
+      to { left: calc((100vw - min(1180px, 100vw)) / 2 + 286px); top: 235px; width: 68px; transform: rotate(-15deg); }
+    }
+
+    .butterfly-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .wing-left { transform-origin: 79px 73px; animation: flutterLeft 160ms ease-in-out 0.9s infinite alternate; }
+    .wing-right { transform-origin: 81px 73px; animation: flutterRight 160ms ease-in-out 0.9s infinite alternate; }
+    .butterfly-wrap.landed .wing-left { animation: breatheLeft 2.5s ease-in-out infinite alternate; }
+    .butterfly-wrap.landed .wing-right { animation: breatheRight 2.5s ease-in-out infinite alternate; }
+
+    @keyframes flutterLeft { to { transform: rotateY(41deg) rotate(-2deg); } }
+    @keyframes flutterRight { to { transform: rotateY(-41deg) rotate(2deg); } }
+    @keyframes breatheLeft { to { transform: rotateY(12deg) rotate(-1deg); } }
+    @keyframes breatheRight { to { transform: rotateY(-12deg) rotate(1deg); } }
+
+    .ink-purple { stroke: #4c1684; stroke-width: 2.1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .ink-light { stroke: #6a29aa; stroke-width: 1.25; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .wing-wash { fill: rgba(147, 112, 192, 0.26); stroke: #4c1684; stroke-width: 2.1; }
+    .spot { fill: #fffdf8; stroke: #4c1684; stroke-width: 1.15; }
+    .tail-accent { fill: #d78142; opacity: 0.86; }
+
+    /* ============================================================
+       STATS BAND
+       ============================================================ */
+    .stats-band {
+      background: var(--sage);
+      color: var(--cream);
+      padding: 28px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      text-align: center;
+    }
+
+    .stat strong {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    .about {
+      background: var(--plum);
+      color: var(--cream);
+      padding: 112px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vine-corner {
+      position: absolute;
+      right: -36px;
+      top: -20px;
+      width: 370px;
+      opacity: 0.22;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .about h2, .projects h2, .publications h2, .skills h2, .contact h2 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5.4vw, 5.2rem);
+      line-height: 0.9;
+      margin: 0 0 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .about p {
+      font-size: clamp(1.05rem, 1.6vw, 1.23rem);
+      line-height: 1.82;
+      margin: 0;
+      color: rgba(245, 240, 232, 0.82);
+    }
+
+    /* ============================================================
+       PROJECTS SECTION: 6-CARD GRID
+       ============================================================ */
+    .projects {
+      padding: 116px 0 126px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects-bg-flower {
+      position: absolute;
+      width: 720px;
+      height: 720px;
+      right: -140px;
+      top: 80px;
+      opacity: 0.07;
+      pointer-events: none;
+      transform: rotate(8deg);
+    }
+
+    .projects-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+
+    .projects-head p {
+      max-width: 430px;
+      line-height: 1.7;
+      color: rgba(58, 31, 82, 0.66);
+    }
+
+    /* 6-card grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--soft-shadow);
+      padding: 32px 28px 28px;
+      border: 1px solid rgba(147, 112, 192, 0.13);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: transform 280ms cubic-bezier(.19,1,.22,1), box-shadow 280ms ease;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .project-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 36px 80px rgba(58, 31, 82, 0.2);
+    }
+
+    .project-number {
+      font-family: var(--serif);
+      font-size: 3.4rem;
+      line-height: 0.8;
+      color: rgba(138, 171, 110, 0.55);
+      margin-bottom: 12px;
+    }
+
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      line-height: 1.0;
+      margin: 0 0 10px;
+      color: var(--plum);
+      letter-spacing: -0.03em;
+    }
+
+    .project-card p {
+      line-height: 1.7;
+      color: rgba(58, 31, 82, 0.66);
+      font-size: 0.93rem;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+
+    /* Terminal stack line */
+    .stack-line {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--button-purple);
+      background: rgba(122, 79, 163, 0.07);
+      border: 1px solid rgba(122, 79, 163, 0.15);
+      border-radius: 6px;
+      padding: 7px 10px;
+      margin-bottom: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.01em;
+    }
+
+    .stack-line::before {
+      content: "$ ";
+      color: var(--sage);
+      font-weight: 700;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .tag { padding: 6px 11px; border-radius: 999px; font-size: 0.73rem; font-weight: 800; letter-spacing: .03em; }
+    .tag.sage { background: var(--light-sage); color: #486432; }
+    .tag.purple { background: var(--lavender); color: var(--plum); }
+
+    .card-links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .github-link {
+      color: var(--button-purple);
+      font-weight: 800;
+      font-size: 0.88rem;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .live-link {
+      color: var(--sage);
+      font-weight: 800;
+      font-size: 0.88rem;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    /* ============================================================
+       PUBLICATIONS SECTION
+       ============================================================ */
+    .publications {
+      background: var(--lavender);
+      padding: 116px 0;
+      overflow: hidden;
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 22px;
+      margin-top: 38px;
+    }
+
+    .paper {
+      background: rgba(255,255,255,0.76);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 18px 44px rgba(58, 31, 82, 0.1);
+      transform: translateX(-46px);
+    }
+
+    .paper.is-visible { transform: translateX(0); }
+
+    .paper-meta {
+      color: var(--button-purple);
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .paper h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      margin: 0 0 12px;
+      line-height: 1;
+      color: var(--plum);
+    }
+
+    .paper p { color: rgba(58,31,82,.73); line-height: 1.7; margin: 0; }
+
+    /* ============================================================
+       SKILLS SECTION
+       ============================================================ */
+    .skills {
+      padding: 112px 0;
+      background: var(--cream);
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .skill-tag {
+      transform: scale(0.65) translateY(12px);
+      opacity: 0;
+      padding: 12px 17px;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(58,31,82,.08);
+      transition: transform 650ms cubic-bezier(.17, 1.35, .35, 1), opacity 400ms ease;
+    }
+
+    .skill-tag.is-visible { transform: scale(1) translateY(0); opacity: 1; }
+    .skill-tag.white-purple { background: white; color: var(--button-purple); }
+    .skill-tag.sage { background: var(--sage); color: var(--cream); }
+    .skill-tag.lavender { background: var(--lavender); color: var(--plum); }
+
+    /* ============================================================
+       CONTACT SECTION
+       ============================================================ */
+    .contact {
+      background: var(--plum);
+      color: var(--cream);
+      padding: 110px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .petal-cloud {
+      position: absolute;
+      inset: 0;
+      opacity: 0.13;
+      pointer-events: none;
+    }
+
+    .contact p {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      line-height: 1.75;
+      color: rgba(245,240,232,.8);
+      font-size: 1.14rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      border: 1px solid rgba(245,240,232,.42);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      color: var(--cream);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--footer-plum);
+      color: var(--cream);
+      position: relative;
+      padding: 84px 0 34px;
+      overflow: hidden;
+    }
+
+    .footer-vine {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
+      opacity: 0.9;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .footer-links { display: flex; gap: 20px; font-weight: 800; }
+    .copyright { text-align: center; color: rgba(245,240,232,.55); font-size: .88rem; }
+
+    /* ============================================================
+       BOTANICAL SVG REUSE
+       ============================================================ */
+    .botanical-stroke { stroke: var(--sage); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .botanical-fill { fill: var(--light-sage); }
+
+    /* ============================================================
+       RESPONSIVE DESIGN
+       ============================================================ */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
+      .hero-copy { text-align: center; }
+      .button-row { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid .stat:last-child { grid-column: 1 / -1; }
+      .projects-head { display: block; }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .butterfly-wrap { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .container { padding: 0 20px; }
+      h1 { font-size: clamp(4.1rem, 17vw, 5rem); }
+      .hero-grid { padding-left: 20px; padding-right: 20px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stats-grid .stat:last-child { grid-column: auto; }
+      .footer-row { flex-direction: column; text-align: center; }
+      .stack-line { font-size: 0.65rem; }
+    }
+
+    /* ============================================================
+       NAME REVEAL — per-letter rise from below with stagger
+       ============================================================ */
+    h1 {
+      overflow: visible;
+    }
+
+    .name-letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(48px) rotate(4deg);
+      animation: letterRise 700ms cubic-bezier(.19,1,.22,1) forwards;
+    }
+
+    /* "Anushka" — letters 0-6, start at 0.15s */
+    .name-letter:nth-child(1)  { animation-delay: 0.15s; }
+    .name-letter:nth-child(2)  { animation-delay: 0.22s; }
+    .name-letter:nth-child(3)  { animation-delay: 0.29s; }
+    .name-letter:nth-child(4)  { animation-delay: 0.36s; }
+    .name-letter:nth-child(5)  { animation-delay: 0.43s; }
+    .name-letter:nth-child(6)  { animation-delay: 0.50s; }
+    .name-letter:nth-child(7)  { animation-delay: 0.57s; }
+    /* space */
+    .name-letter:nth-child(8)  { animation-delay: 0.60s; }
+    /* "Maji" — letters 8-11 */
+    .name-letter:nth-child(9)  { animation-delay: 0.67s; }
+    .name-letter:nth-child(10) { animation-delay: 0.74s; }
+    .name-letter:nth-child(11) { animation-delay: 0.81s; }
+    .name-letter:nth-child(12) { animation-delay: 0.88s; }
+
+    @keyframes letterRise {
+      to { opacity: 1; transform: translateY(0) rotate(0deg); }
+    }
+
+    /* Thin decorative underline draws in under "Maji" */
+    .name-underline {
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sage), var(--lavender));
+      border-radius: 99px;
+      width: 0;
+      margin-top: 6px;
+      animation: underlineDraw 700ms cubic-bezier(.19,1,.22,1) 1.0s forwards;
+    }
+
+    @keyframes underlineDraw { to { width: 100%; } }
+
+  </style>
+</head>
+<body>
+  <!-- ============================================================
+       HERO SECTION: FLOWER, BUTTERFLY, NAME, TAGLINE, BUTTONS
+       ============================================================ -->
+  <main class="hero" id="top">
+    <div class="butterfly-wrap" id="butterfly" aria-hidden="true">
+      <svg class="butterfly-svg" viewBox="0 0 160 150" role="img" aria-label="Purple swallowtail butterfly sketch">
+        <g class="wing-left">
+          <path class="wing-wash" d="M79 72 C45 17, 6 3, 4 34 C0 70, 26 91, 62 90 C46 103, 33 124, 24 143 C47 133, 69 109, 79 72 Z" />
+          <path class="ink-purple" d="M79 72 C54 48, 35 28, 7 18 M76 75 C47 67, 25 57, 4 34 M70 82 C48 84, 35 93, 24 143 M62 90 C50 105, 41 123, 36 138" />
+          <path class="ink-light" d="M21 25 C28 43, 33 62, 32 83 M40 29 C44 50, 49 68, 58 87 M59 42 C56 57, 61 68, 73 77 M18 91 C28 97, 39 99, 51 96 M29 111 C39 115, 48 115, 59 105" />
+          <path class="ink-light" d="M17 34 C34 31, 45 35, 58 47 M12 51 C30 52, 42 58, 55 68 M12 68 C27 70, 40 76, 54 86" />
+          <ellipse class="spot" cx="21" cy="23" rx="6" ry="8" transform="rotate(-36 21 23)" />
+          <ellipse class="spot" cx="34" cy="30" rx="6" ry="9" transform="rotate(-24 34 30)" />
+          <ellipse class="spot" cx="47" cy="37" rx="6" ry="10" transform="rotate(-17 47 37)" />
+          <ellipse class="spot" cx="15" cy="47" rx="5" ry="7" />
+          <ellipse class="spot" cx="18" cy="68" rx="5" ry="7" />
+          <ellipse class="spot" cx="29" cy="96" rx="6" ry="8" />
+          <ellipse class="spot" cx="39" cy="116" rx="5" ry="7" transform="rotate(31 39 116)" />
+          <circle class="tail-accent" cx="50" cy="116" r="3.7" />
+          <path class="ink-light" d="M39 131 q-9 10 -14 12 q-5 2 -3 -3 q2 -5 10 -9" />
+          <path class="ink-light" d="M23 101 q9 6 18 5 M17 79 q12 6 25 5 M15 58 q12 5 27 6" />
+        </g>
+        <g class="wing-right">
+          <path class="wing-wash" d="M82 72 C106 21, 145 9, 153 38 C163 73, 137 92, 103 91 C122 105, 132 124, 139 144 C116 135, 91 110, 82 72 Z" />
+          <path class="ink-purple" d="M82 72 C104 49, 125 31, 151 22 M85 75 C111 67, 133 59, 153 38 M91 83 C111 85, 128 96, 139 144 M103 91 C116 108, 124 127, 128 139" />
+          <path class="ink-light" d="M139 29 C133 47, 129 65, 130 84 M121 32 C116 52, 110 70, 100 87 M102 44 C106 58, 101 69, 88 77 M141 91 C130 98, 118 100, 106 96 M131 111 C121 116, 111 116, 100 105" />
+          <path class="ink-light" d="M143 36 C125 33, 113 36, 100 48 M148 52 C130 53, 118 59, 105 69 M148 69 C132 71, 120 76, 106 86" />
+          <ellipse class="spot" cx="139" cy="26" rx="6" ry="8" transform="rotate(36 139 26)" />
+          <ellipse class="spot" cx="126" cy="32" rx="6" ry="9" transform="rotate(24 126 32)" />
+          <ellipse class="spot" cx="113" cy="39" rx="6" ry="10" transform="rotate(17 113 39)" />
+          <ellipse class="spot" cx="145" cy="50" rx="5" ry="7" />
+          <ellipse class="spot" cx="143" cy="70" rx="5" ry="7" />
+          <ellipse class="spot" cx="130" cy="97" rx="6" ry="8" />
+          <ellipse class="spot" cx="121" cy="117" rx="5" ry="7" transform="rotate(-31 121 117)" />
+          <circle class="tail-accent" cx="109" cy="116" r="3.7" />
+          <path class="ink-light" d="M121 131 q9 10 14 12 q5 2 3 -3 q-2 -5 -10 -9" />
+          <path class="ink-light" d="M137 101 q-9 6 -18 5 M143 80 q-12 6 -25 5 M145 59 q-12 5 -27 6" />
+        </g>
+        <g class="body">
+          <path class="ink-purple" d="M78 55 C74 69, 75 88, 82 107 C89 89, 88 68, 83 55 Z" />
+          <path class="ink-light" d="M77 66 L86 66 M76 75 L87 75 M77 84 L86 84 M79 94 L85 94" />
+          <circle cx="80" cy="50" r="7" fill="#4c1684" />
+          <path class="ink-purple" d="M77 46 C64 31, 55 23, 46 20 M83 46 C95 30, 105 22, 115 19" />
+          <circle cx="45" cy="20" r="2.6" fill="#4c1684" />
+          <circle cx="116" cy="19" r="2.6" fill="#4c1684" />
+          <path class="ink-light" d="M74 74 q-10 2 -18 10 M86 74 q10 2 18 10 M74 84 q-10 5 -15 16 M87 84 q10 5 15 16 M78 95 q-8 6 -11 16 M84 95 q8 6 11 16" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-grid">
+      
+      <section class="hero-copy" aria-labelledby="hero-title">
+        <div class="eyebrow">ML Engineering · SRE · Cloud Infrastructure</div>
+        <h1 id="hero-title"><span class="name-letter">A</span><span class="name-letter">n</span><span class="name-letter">u</span><span class="name-letter">s</span><span class="name-letter">h</span><span class="name-letter">k</span><span class="name-letter">a</span><span class="name-letter" style="display:inline-block;width:0.35em"> </span><span class="name-letter">M</span><span class="name-letter">a</span><span class="name-letter">j</span><span class="name-letter">i</span><span class="name-underline"></span></h1>
+        <p class="tagline">I build ML systems that survive production.</p>
+        <p class="tagline-sub">FastAPI · Kubernetes · Kafka · AWS · MLflow · Docker</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-outline" href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn btn-outline" href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </section>
+    </div>
+    <a class="scroll-nudge" href="#stats">Scroll</a>
+  </main>
+
+  <!-- ============================================================
+       STATS BAND
+       ============================================================ -->
+  <section class="stats-band" id="stats">
+    <div class="container stats-grid">
+      <div class="stat"><strong>2</strong><span>IEEE Publications</span></div>
+      <div class="stat"><strong>6</strong><span>Projects</span></div>
+      <div class="stat"><strong>3.56</strong><span>GPA</span></div>
+      <div class="stat"><strong>F-1</strong><span>STEM OPT</span></div>
+      <div class="stat"><strong>Spring 2027</strong><span>Graduate</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+       ============================================================ -->
+  <section class="about" id="about">
+    <svg class="vine-corner" viewBox="0 0 300 300" aria-hidden="true">
+      <path d="M290 20 C225 70 230 135 164 160 C92 188 72 239 30 286" stroke="#d4c5ee" stroke-width="3" fill="none" stroke-linecap="round" />
+      <g fill="none" stroke="#d4e8c2" stroke-width="2" stroke-linecap="round">
+        <path d="M223 73 C197 56 184 61 173 77 C198 87 211 87 223 73Z" />
+        <path d="M184 151 C198 126 214 119 234 124 C222 148 205 158 184 151Z" />
+        <path d="M96 214 C71 199 57 207 48 224 C72 232 86 229 96 214Z" />
+      </g>
+    </svg>
+    <div class="container about-grid reveal">
+      <div>
+        <span class="section-label">About</span>
+        <h2>Built with precision, presented with softness.</h2>
+      </div>
+      <p>
+        I am a Computer Engineering graduate student at Arizona State University building at the intersection of machine learning, reliable systems, and elegant product experiences. My work spans model serving, streaming data infrastructure, research-driven ML pipelines, and observability-first engineering — designed to be both technically rigorous and visually memorable.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION: 6-CARD GRID
+       ============================================================ -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects-head reveal">
+        <div>
+          <span class="section-label">Selected Work</span>
+          <h2>Projects in bloom.</h2>
+        </div>
+        <p>Six production-grade projects spanning ML serving, streaming, cloud infrastructure, orchestration, and mobile — with real deployments and operational depth.</p>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- Card 1: ML Serving API -->
+        <article class="project-card">
+          <div class="project-number">01</div>
+          <h3>ML Model Serving API</h3>
+          <p>Production-style ML serving with FastAPI, scikit-learn Random Forest inference, PostgreSQL persistence, and containerized deployment with clear API contracts.</p>
+          <div class="stack-line">fastapi · sklearn · postgresql · docker</div>
+          <div class="tags">
+            <span class="tag purple">FastAPI</span><span class="tag sage">scikit-learn</span><span class="tag purple">PostgreSQL</span><span class="tag sage">Docker</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/ml-serving-api" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </article>
+
+        <!-- Card 2: Real-Time Pipeline -->
+        <article class="project-card">
+          <div class="project-number">02</div>
+          <h3>Real-Time Data Pipeline</h3>
+          <p>Streaming analytics with Apache Kafka, cluster administration, Prometheus metrics collection, Grafana dashboards, and Docker-compose infrastructure.</p>
+          <div class="stack-line">kafka · prometheus · grafana · docker</div>
+          <div class="tags">
+            <span class="tag purple">Apache Kafka</span><span class="tag sage">Prometheus</span><span class="tag purple">Grafana</span><span class="tag sage">Docker</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/real-time-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </article>
+
+        <!-- Card 3: Serverless ML on AWS -->
+        <article class="project-card">
+          <div class="project-number">03</div>
+          <h3>Serverless ML on AWS</h3>
+          <p>Fraud detection model deployed serverless via Lambda + API Gateway, containerized with ECR, artifact storage on S3, infrastructure as code with Terraform.</p>
+          <div class="stack-line">lambda · api-gateway · s3 · ecr · terraform</div>
+          <div class="tags">
+            <span class="tag purple">AWS Lambda</span><span class="tag sage">Terraform</span><span class="tag purple">ECR</span><span class="tag sage">S3</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/aws-serverless-ml" target="_blank" rel="noreferrer">GitHub →</a>
+            <a class="live-link" href="https://rsp2qh4oh8.execute-api.us-east-1.amazonaws.com/prod/predict" target="_blank" rel="noreferrer">Live ↗</a>
+          </div>
+        </article>
+
+        <!-- Card 4: Kubernetes CI/CD -->
+        <article class="project-card">
+          <div class="project-number">04</div>
+          <h3>Kubernetes + CI/CD</h3>
+          <p>ML workloads on Minikube with Horizontal Pod Autoscaler scaling from 2→10 pods under load, PostgreSQL persistence, and GitHub Actions deployment pipeline.</p>
+          <div class="stack-line">kubernetes · hpa · github-actions · postgresql</div>
+          <div class="tags">
+            <span class="tag purple">Kubernetes</span><span class="tag sage">HPA 2→10 pods</span><span class="tag purple">GitHub Actions</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/k8s-ml-deploy" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </article>
+
+        <!-- Card 5: MLflow Pipeline -->
+        <article class="project-card">
+          <div class="project-number">05</div>
+          <h3>MLflow Training Pipeline</h3>
+          <p>End-to-end ML lifecycle with Logistic Regression, Random Forest, XGBoost experiment tracking, model registry, retraining scripts, MinIO artifact store, and CI/CD.</p>
+          <div class="stack-line">mlflow · xgboost · minio · docker · github-actions</div>
+          <div class="tags">
+            <span class="tag purple">MLflow</span><span class="tag sage">XGBoost</span><span class="tag purple">MinIO</span><span class="tag sage">Docker Compose</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/mlflow-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </article>
+
+        <!-- Card 6: BrakeIQ -->
+        <article class="project-card">
+          <div class="project-number">06</div>
+          <h3>BrakeIQ — Mobile App</h3>
+          <p>Client-facing brake technician manual app built with React Native + Expo, deployed to the web via Netlify. Responsive, offline-capable, real production use.</p>
+          <div class="stack-line">react-native · expo · netlify · typescript</div>
+          <div class="tags">
+            <span class="tag purple">React Native</span><span class="tag sage">Expo</span><span class="tag purple">Netlify</span><span class="tag sage">TypeScript</span>
+          </div>
+          <div class="card-links">
+            <a class="github-link" href="https://github.com/AnushkaMaji/brakeiq" target="_blank" rel="noreferrer">GitHub →</a>
+            <a class="live-link" href="https://brakeiq.netlify.app" target="_blank" rel="noreferrer">Live ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PUBLICATIONS SECTION
+       ============================================================ -->
+  <section class="publications" id="publications">
+    <div class="container">
+      <span class="section-label reveal">Publications</span>
+      <h2 class="reveal">Research with a signal.</h2>
+      <div class="publication-list">
+        <article class="paper reveal">
+          <div class="paper-meta">IEEE ICCES 2024 · First Author · Feb 2025</div>
+          <h3>Designing of Smart Pothole Detection System</h3>
+          <p>ML pipeline using Random Forest, XGBoost, and SVM on IoT sensor data with TensorFlow Lite deployment and 90%+ accuracy.</p>
+        </article>
+        <article class="paper reveal">
+          <div class="paper-meta">IRTM 2024 · First Author · Dec 2024</div>
+          <h3>Comprehensive Study on Pothole Detection Techniques</h3>
+          <p>A survey of sensor fusion, computer vision, and machine learning approaches for practical road-surface intelligence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS SECTION
+       ============================================================ -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <span class="section-label reveal">Skills</span>
+      <h2 class="reveal">A garden of tools.</h2>
+      <div class="skill-cloud" id="skillCloud">
+        <span class="skill-tag white-purple">Python</span><span class="skill-tag sage">Java</span><span class="skill-tag lavender">TypeScript</span><span class="skill-tag white-purple">FastAPI</span><span class="skill-tag sage">Docker</span><span class="skill-tag lavender">Kubernetes</span><span class="skill-tag white-purple">AWS</span><span class="skill-tag sage">PostgreSQL</span><span class="skill-tag lavender">Apache Kafka</span><span class="skill-tag white-purple">Prometheus</span><span class="skill-tag sage">Grafana</span><span class="skill-tag lavender">CI/CD</span><span class="skill-tag white-purple">MLflow</span><span class="skill-tag sage">scikit-learn</span><span class="skill-tag lavender">XGBoost</span><span class="skill-tag white-purple">Terraform</span><span class="skill-tag sage">TensorFlow Lite</span><span class="skill-tag lavender">Linux</span><span class="skill-tag white-purple">GitHub Actions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT SECTION
+       ============================================================ -->
+  <section class="contact" id="contact">
+    <svg class="petal-cloud" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="#d4c5ee"><ellipse cx="120" cy="90" rx="90" ry="28" transform="rotate(-22 120 90)"/><ellipse cx="860" cy="94" rx="118" ry="34" transform="rotate(18 860 94)"/><ellipse cx="690" cy="260" rx="140" ry="30" transform="rotate(-12 690 260)"/></g>
+      <g fill="#d4e8c2"><ellipse cx="360" cy="70" rx="95" ry="26" transform="rotate(34 360 70)"/><ellipse cx="250" cy="270" rx="125" ry="32" transform="rotate(-26 250 270)"/></g>
+    </svg>
+    <div class="container reveal">
+      <span class="section-label">Contact</span>
+      <h2>Let's build something alive.</h2>
+      <p>Open to ML engineering, SRE, cloud/platform, AI product, and research-aligned opportunities.</p>
+      <div class="contact-links">
+        <a href="mailto:amaji123@asu.edu">amaji123@asu.edu</a>
+        <a href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER SECTION
+       ============================================================ -->
+  <footer>
+    <svg class="footer-vine" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 42 C130 8 200 76 330 39 S520 11 650 42 S850 82 990 39 S1110 11 1200 42" fill="none" stroke="#d4e8c2" stroke-width="3" stroke-linecap="round"/>
+      <g stroke="#d4e8c2" stroke-width="1.8" fill="none">
+        <path d="M170 38 q-24 -16 -44 0 q23 11 44 0Z"/><path d="M430 40 q22 -19 45 -4 q-22 14 -45 4Z"/><path d="M760 48 q-20 -19 -45 -6 q20 16 45 6Z"/><path d="M1040 39 q22 -15 44 1 q-21 12 -44 -1Z"/>
+      </g>
+      <g>
+        <g transform="translate(245 43)" fill="#9370c0"><ellipse rx="8" ry="17" transform="rotate(0)"/><ellipse rx="8" ry="17" transform="rotate(72)"/><ellipse rx="8" ry="17" transform="rotate(144)"/><ellipse rx="8" ry="17" transform="rotate(216)"/><ellipse rx="8" ry="17" transform="rotate(288)"/><circle r="5" fill="#f5f0e8"/></g>
+        <g transform="translate(505 35)" fill="#8aab6e"><ellipse rx="7" ry="15" transform="rotate(0)"/><ellipse rx="7" ry="15" transform="rotate(72)"/><ellipse rx="7" ry="15" transform="rotate(144)"/><ellipse rx="7" ry="15" transform="rotate(216)"/><ellipse rx="7" ry="15" transform="rotate(288)"/><circle r="4" fill="#2a1440"/></g>
+        <g transform="translate(640 43)" fill="#d4c5ee"><ellipse rx="7" ry="16" transform="rotate(0)"/><ellipse rx="7" ry="16" transform="rotate(72)"/><ellipse rx="7" ry="16" transform="rotate(144)"/><ellipse rx="7" ry="16" transform="rotate(216)"/><ellipse rx="7" ry="16" transform="rotate(288)"/><circle r="4" fill="#3a1f52"/></g>
+        <g transform="translate(880 51)" fill="#9370c0"><ellipse rx="8" ry="17" transform="rotate(0)"/><ellipse rx="8" ry="17" transform="rotate(72)"/><ellipse rx="8" ry="17" transform="rotate(144)"/><ellipse rx="8" ry="17" transform="rotate(216)"/><ellipse rx="8" ry="17" transform="rotate(288)"/><circle r="5" fill="#f5f0e8"/></g>
+        <g transform="translate(1118 33)" fill="#8aab6e"><ellipse rx="6" ry="14" transform="rotate(0)"/><ellipse rx="6" ry="14" transform="rotate(72)"/><ellipse rx="6" ry="14" transform="rotate(144)"/><ellipse rx="6" ry="14" transform="rotate(216)"/><ellipse rx="6" ry="14" transform="rotate(288)"/><circle r="4" fill="#2a1440"/></g>
+        <circle cx="350" cy="44" r="4" fill="#d4c5ee"/><circle cx="720" cy="42" r="4" fill="#8aab6e"/><circle cx="965" cy="43" r="4" fill="#d4c5ee"/>
+      </g>
+    </svg>
+    <div class="container">
+      <div class="footer-row">
+        <div class="footer-name">Anushka Maji</div>
+        <div class="footer-links"><a href="mailto:amaji123@asu.edu">Email</a><a href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a></div>
+      </div>
+      <div class="copyright">© 2026 Anushka Maji. Designed as a botanical systems portfolio.</div>
+    </div>
+  </footer>
+
+
+
+  <script>
+    /* ============================================================
+       BUTTERFLY FLIGHT AND LANDING SEQUENCE
+       ============================================================ */
+    const butterfly = document.getElementById('butterfly');
+    window.addEventListener('load', () => {
+      window.setTimeout(() => butterfly.classList.add('landed'), 4050);
+    });
+
+    /* ============================================================
+       SCROLL REVEALS: SECTIONS AND PAPERS
+       ============================================================ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ============================================================
+       PROJECT CARDS: STAGGERED SCROLL REVEAL
+       ============================================================ */
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cards = entry.target.querySelectorAll('.project-card');
+          cards.forEach((card, i) => {
+            window.setTimeout(() => card.classList.add('is-visible'), i * 110);
+          });
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    const grid = document.querySelector('.project-grid');
+    if (grid) cardObserver.observe(grid);
+
+    /* ============================================================
+       BLOOMING SKILL TAGS
+       ============================================================ */
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const tags = entry.target.querySelectorAll('.skill-tag');
+          tags.forEach((tag, i) => {
+            window.setTimeout(() => tag.classList.add('is-visible'), i * 70);
+          });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    skillObserver.observe(document.getElementById('skillCloud'));
+  </script>
+</body>
+</html>
