@@ -1,789 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Anushka Maji — ML Engineer & Researcher</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --cream:#f5f0e8;--lav:#d4c5ee;--pdp:#9370c0;--pbtn:#7a4fa3;
-  --sage:#8aab6e;--sagl:#d4e8c2;--plum:#3a1f52;--plumd:#2a1440;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Jost',sans-serif;background:var(--cream);color:#3a2d4a;overflow-x:hidden;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anushka Maji — ML Engineer & SRE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --lavender: #c9b8d8;
+      --sage:     #8fa888;
+      --cream:    #f5f0e8;
+      --plum:     #4a2c4a;
+      --plum-mid: #6b3f6b;
+      --ink:      #2c1f2c;
+      --mono:     'JetBrains Mono', monospace;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --sans:     'Jost', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
 
-/* HERO */
-#hero{width:100%;min-height:100vh;background:var(--cream);display:flex;align-items:center;padding:40px 80px;position:relative;overflow:hidden;}
-.hero-inner{display:flex;align-items:center;width:100%;max-width:1300px;margin:0 auto;gap:0;}
-#stage{width:460px;min-width:460px;height:580px;position:relative;flex-shrink:0;}
-#stage svg{width:100%;height:100%;}
+    #butterfly-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-/* hero text — starts hidden, JS reveals it */
-#hero-text{flex:1;padding-left:60px;opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}
-#hero-text.show{opacity:1;transform:translateX(0);}
-.hname{font-family:'Cormorant Garamond',serif;font-size:clamp(3.6rem,5.8vw,7rem);font-weight:700;line-height:.88;color:var(--plum);letter-spacing:-2px;}
-.hname span{display:block;color:var(--pdp);}
-.htag{margin-top:26px;font-size:.78rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--sage);}
-.htag b{color:var(--pdp);font-weight:500;}
-.hbtns{margin-top:42px;display:flex;gap:13px;flex-wrap:wrap;opacity:0;transform:translateY(12px);transition:opacity .7s ease .4s,transform .7s ease .4s;}
-.hbtns.show{opacity:1;transform:translateY(0);}
-.btn{padding:12px 28px;border-radius:2px;font-family:'Jost',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;transition:all .22s;}
-.btn-f{background:var(--pbtn);color:#fff;border:2px solid var(--pbtn);}
-.btn-f:hover{background:var(--plum);border-color:var(--plum);}
-.btn-o{background:transparent;color:var(--pbtn);border:2px solid var(--pbtn);}
-.btn-o:hover{background:var(--pbtn);color:#fff;}
-.nudge{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:nfade 1s ease 5s forwards;}
-@keyframes nfade{to{opacity:.4;}}
-.nline{width:1px;height:44px;background:var(--pdp);animation:npulse 1.8s ease infinite;}
-@keyframes npulse{0%,100%{transform:scaleY(1);opacity:.5;}50%{transform:scaleY(1.3);opacity:1;}}
-.ntxt{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--pdp);}
+    .vine-left, .vine-right { position: fixed; top: 0; width: 60px; height: 100vh; pointer-events: none; z-index: 1; opacity: 0.45; }
+    .vine-left  { left: 0; }
+    .vine-right { right: 0; transform: scaleX(-1); }
 
-/* REST OF PAGE */
-#stats{background:var(--sage);padding:27px 80px;display:flex;justify-content:center;align-items:center;}
-.st{text-align:center;padding:0 48px;position:relative;}
-.st:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;bottom:15%;width:1px;background:rgba(255,255,255,.34);}
-.sn{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:700;color:#fff;line-height:1;}
-.sl{font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:4px;}
+    main { position: relative; z-index: 2; }
+    section { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-#about{background:var(--plum);padding:110px 80px;position:relative;overflow:hidden;}
-.vc{position:absolute;top:0;right:0;width:200px;height:200px;opacity:.12;}
-.ab-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;}
-.ab-h{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--lav);line-height:1.05;}
-.ab-h em{color:var(--sagl);font-style:italic;}
-.ab-b{color:rgba(212,197,238,.78);font-size:.95rem;line-height:1.9;font-weight:300;}
-.ab-b p+p{margin-top:16px;}
-.ab-b strong{color:var(--lav);font-weight:500;}
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(245,240,232,0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(74,44,74,0.08); }
+    .nav-logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--plum); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--plum-mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--sage); }
 
-#projects{background:var(--cream);padding:110px 80px;position:relative;overflow:hidden;}
-.pbg{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:520px;opacity:.06;pointer-events:none;}
-.slbl{font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;}
-.sh{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:700;color:var(--plum);line-height:1;margin-bottom:54px;}
-.deck{position:relative;max-width:860px;}
-.cards-wrap{position:relative;height:390px;}
-.card{position:absolute;top:0;left:0;width:100%;background:#fff;border-radius:3px;padding:44px 48px;opacity:0;transform:translateY(14px) scale(.977);transition:opacity .44s,transform .44s;pointer-events:none;box-shadow:0 6px 36px rgba(58,31,82,.07);}
-.card.active{opacity:1;transform:none;pointer-events:auto;z-index:2;}
-.card.prev{opacity:.24;transform:translateY(-6px) scale(.984);z-index:1;}
-.cnum{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--sagl);line-height:1;margin-bottom:8px;}
-.ctit{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--plum);margin-bottom:12px;}
-.cdesc{font-size:.9rem;line-height:1.78;color:#6a5a7a;margin-bottom:18px;font-weight:300;}
-.ctags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
-.tag{padding:5px 12px;border-radius:2px;font-size:.67rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;}
-.tp{background:var(--lav);color:var(--pbtn);}.ts{background:var(--sagl);color:#3d6626;}.tc{background:var(--cream);color:var(--plum);border:1px solid rgba(58,31,82,.14);}
-.clink{font-size:.73rem;letter-spacing:2px;text-transform:uppercase;color:var(--pbtn);text-decoration:none;font-weight:600;border-bottom:1.5px solid var(--pbtn);padding-bottom:2px;transition:color .2s,border-color .2s;}
-.clink:hover{color:var(--plum);border-color:var(--plum);}
-.dctl{display:flex;align-items:center;gap:15px;margin-top:24px;}
-.darr{background:none;border:1.5px solid var(--pbtn);color:var(--pbtn);width:40px;height:40px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s;}
-.darr:hover{background:var(--pbtn);color:#fff;}
-.ddots{display:flex;gap:7px;}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(122,79,163,.22);cursor:pointer;transition:background .3s;}
-.dot.active{background:var(--pbtn);}
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 5rem; }
+    .sunflower-wrap { margin-bottom: 2rem; opacity: 0; transform: scale(0.8); animation: bloomIn 1.2s cubic-bezier(0.34,1.56,0.64,1) 0.4s forwards; }
+    @keyframes bloomIn { to { opacity: 1; transform: scale(1); } }
+    .hero-eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; color: var(--sage); text-transform: uppercase; margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards; }
+    .hero-name { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 300; line-height: 1.0; color: var(--plum); opacity: 0; animation: fadeUp 0.8s ease 1.1s forwards; }
+    .hero-name em { font-style: italic; color: var(--plum-mid); }
+    .hero-tagline { font-family: var(--serif); font-size: clamp(1.1rem, 2.2vw, 1.45rem); font-weight: 300; font-style: italic; color: var(--plum); margin-top: 1.2rem; max-width: 560px; line-height: 1.55; opacity: 0; animation: fadeUp 0.8s ease 1.3s forwards; }
+    .hero-sub { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em; color: var(--sage); margin-top: 0.6rem; opacity: 0; animation: fadeUp 0.8s ease 1.45s forwards; }
+    .hero-cta-row { display: flex; gap: 1.2rem; margin-top: 2.5rem; opacity: 0; animation: fadeUp 0.8s ease 1.6s forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-#pub{background:var(--lav);padding:110px 80px;}
-#pub .sh{color:var(--plum);}
-.pub-list{max-width:860px;display:flex;flex-direction:column;gap:32px;}
-.pub-c{background:#fff;border-radius:3px;padding:38px 44px;transform:translateX(-44px);opacity:0;transition:transform .6s ease,opacity .6s ease;border-left:3px solid var(--pdp);}
-.pub-c.show{transform:translateX(0);opacity:1;}
-.pm{font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage);margin-bottom:8px;font-weight:600;}
-.pt{font-family:'Cormorant Garamond',serif;font-size:1.42rem;font-weight:700;color:var(--plum);margin-bottom:11px;line-height:1.3;}
-.pd{font-size:.88rem;line-height:1.76;color:#6a5a7a;font-weight:300;}
-.pbdg{display:inline-block;margin-top:13px;padding:4px 12px;background:var(--lav);color:var(--pbtn);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px;font-weight:600;}
+    /* BUTTONS */
+    .btn-primary { font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 2rem; background: var(--plum); color: var(--cream); border: none; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--plum-mid); transform: translateY(-1px); }
+    .btn-ghost { font-family: var(--sans); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 2rem; background: transparent; color: var(--plum); border: 1px solid var(--plum); cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .btn-ghost:hover { background: var(--plum); color: var(--cream); }
 
-#skills{background:var(--cream);padding:110px 80px;}
-#skills .sh{margin-bottom:40px;}
-.sg{display:flex;flex-wrap:wrap;gap:10px;max-width:980px;}
-.sk{padding:8px 16px;border-radius:2px;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;opacity:0;transform:scale(.65);transition:opacity .34s ease,transform .34s cubic-bezier(.34,1.56,.64,1);}
-.sk.show{opacity:1;transform:scale(1);}
-.sk.a{background:var(--plum);color:var(--lav);}.sk.b{background:var(--sagl);color:#3d6626;}.sk.c{background:var(--lav);color:var(--pbtn);}
+    /* STATS */
+    .stats-band { background: var(--plum); color: var(--cream); display: flex; justify-content: center; }
+    .stat-item { flex: 1; max-width: 220px; text-align: center; padding: 2rem 1.5rem; border-right: 1px solid rgba(245,240,232,0.12); opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .stat-item:last-child { border-right: none; }
+    .stat-item.visible { opacity: 1; transform: translateY(0); }
+    .stat-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--lavender); }
+    .stat-label { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.65); margin-top: 0.4rem; }
 
-#contact{background:var(--plum);padding:110px 80px;position:relative;overflow:hidden;text-align:center;}
-.pet{position:absolute;border-radius:50% 0 50% 0;background:rgba(212,197,238,.06);pointer-events:none;}
-.ch{font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:700;color:var(--lav);margin-bottom:14px;}
-.cs{color:rgba(212,197,238,.66);font-size:.94rem;font-weight:300;margin-bottom:38px;}
-.ce{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--sagl);text-decoration:none;border-bottom:1.5px solid rgba(212,232,194,.34);padding-bottom:3px;transition:color .2s,border-color .2s;}
-.ce:hover{color:#fff;border-color:#fff;}
+    /* SECTION HEADERS */
+    .section-header { text-align: center; margin-bottom: 3.5rem; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .section-header.visible { opacity: 1; transform: translateY(0); }
+    .section-eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.6rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--plum); line-height: 1.1; }
+    .section-title em { font-style: italic; }
 
-footer{background:var(--plumd);padding:0 80px 36px;}
-.fvw{width:100%;margin-bottom:28px;}
-.fb{display:flex;align-items:center;justify-content:space-between;}
-.fn{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--lav);}
-.fc{font-size:.7rem;color:rgba(212,197,238,.34);letter-spacing:1px;}
-.fl{display:flex;gap:22px;}
-.fl a{font-size:.67rem;letter-spacing:2px;text-transform:uppercase;color:rgba(212,197,238,.54);text-decoration:none;transition:color .2s;}
-.fl a:hover{color:var(--lav);}
+    /* PROJECTS */
+    #projects { padding: 7rem 2rem; background: var(--plum); }
+    #projects .section-eyebrow { color: var(--lavender); }
+    #projects .section-title { color: var(--cream); }
+    #projects .section-title em { color: var(--lavender); }
 
-@media(max-width:900px){
-  #hero{padding:50px 22px;}
-  .hero-inner{flex-direction:column;gap:32px;}
-  #stage{width:100%;min-width:0;height:380px;}
-  #hero-text{padding-left:0;}
-  #stats{padding:24px 14px;flex-wrap:wrap;gap:18px;}.st{padding:0 16px;}
-  #about,#projects,#pub,#skills,#contact{padding:68px 22px;}
-  .ab-in{grid-template-columns:1fr;gap:30px;}.ab-h{font-size:2.6rem;}
-  footer{padding:0 22px 28px;}
-  .fb{flex-direction:column;gap:12px;text-align:center;}
-}
-</style>
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .projects-grid { grid-template-columns: 1fr; } }
+    .project-card:last-child:nth-child(3n+1) { grid-column: 2; }
+
+    .project-card { background: #fff; border: 1px solid rgba(74,44,74,0.10); padding: 1.8rem; position: relative; overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; opacity: 0; transform: translateY(24px); cursor: default; }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--lavender), var(--sage)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(74,44,74,0.18); border-color: rgba(74,44,74,0.22); }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .card-number { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; color: var(--lavender); margin-bottom: 0.9rem; }
+    .card-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--plum); line-height: 1.2; margin-bottom: 0.6rem; }
+    .card-desc { font-family: var(--sans); font-size: 0.82rem; line-height: 1.65; color: #3a2a3a; margin-bottom: 1.2rem; }
+    .card-stack { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.04em; color: var(--sage); background: rgba(143,168,136,0.08); border: 1px solid rgba(143,168,136,0.2); border-left: 3px solid var(--sage); padding: 0.45rem 0.7rem; margin-bottom: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-stack::before { content: '$ '; color: var(--lavender); font-weight: 500; }
+    .card-links { display: flex; gap: 1rem; align-items: center; }
+    .card-link { font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plum-mid); text-decoration: none; display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
+    .card-link:hover { color: var(--sage); }
+    .card-link svg { width: 11px; height: 11px; }
+    .card-live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-right: 0.3rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .card-badge { position: absolute; top: 1rem; right: 1rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); background: var(--sage); padding: 0.2rem 0.5rem; }
+
+    /* ABOUT */
+    #about { padding: 7rem 2rem; background: linear-gradient(180deg, var(--cream) 0%, rgba(201,184,216,0.08) 100%); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media (max-width: 720px) { .about-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-text p { font-family: var(--serif); font-size: 1.15rem; line-height: 1.8; color: var(--plum); margin-bottom: 1.2rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-credentials { display: flex; flex-direction: column; gap: 1rem; }
+    .credential { display: flex; gap: 1rem; align-items: flex-start; opacity: 0; transform: translateX(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .credential.visible { opacity: 1; transform: translateX(0); }
+    .cred-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--plum); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cred-icon svg { width: 16px; height: 16px; stroke: var(--cream); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+    .cred-text strong { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: var(--plum); margin-bottom: 0.15rem; }
+    .cred-text span { font-family: var(--sans); font-size: 0.75rem; color: var(--plum-mid); opacity: 0.9; }
+
+    /* CONTACT */
+    #contact { padding: 7rem 2rem; background: var(--plum); }
+    #contact .section-eyebrow { color: var(--lavender); }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-title em { color: var(--lavender); }
+    .contact-inner { text-align: center; max-width: 560px; margin: 0 auto; }
+    .contact-inner p { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: rgba(245,240,232,0.85); line-height: 1.7; margin-bottom: 2.5rem; }
+    .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    #contact .btn-primary { background: var(--cream); color: var(--plum); }
+    #contact .btn-primary:hover { background: var(--lavender); color: var(--plum); }
+    #contact .btn-ghost { border-color: var(--cream); color: var(--cream); }
+    #contact .btn-ghost:hover { background: var(--cream); color: var(--plum); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(245,240,232,0.15); background: var(--plum); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--sans); font-size: 0.72rem; color: rgba(245,240,232,0.45); }
+    footer span { font-family: var(--mono); }
+
+    /* SUNFLOWER */
+    .sunflower-svg { width: 90px; height: 90px; }
+    .sunflower-svg .petal { stroke-dasharray: 60; stroke-dashoffset: 60; }
+    .sunflower-svg .petal:nth-child(1)  { animation: drawPetal 0.4s ease 0.5s forwards; }
+    .sunflower-svg .petal:nth-child(2)  { animation: drawPetal 0.4s ease 0.6s forwards; }
+    .sunflower-svg .petal:nth-child(3)  { animation: drawPetal 0.4s ease 0.7s forwards; }
+    .sunflower-svg .petal:nth-child(4)  { animation: drawPetal 0.4s ease 0.8s forwards; }
+    .sunflower-svg .petal:nth-child(5)  { animation: drawPetal 0.4s ease 0.9s forwards; }
+    .sunflower-svg .petal:nth-child(6)  { animation: drawPetal 0.4s ease 1.0s forwards; }
+    .sunflower-svg .petal:nth-child(7)  { animation: drawPetal 0.4s ease 1.1s forwards; }
+    .sunflower-svg .petal:nth-child(8)  { animation: drawPetal 0.4s ease 1.2s forwards; }
+    .sunflower-svg .petal:nth-child(9)  { animation: drawPetal 0.4s ease 1.3s forwards; }
+    .sunflower-svg .petal:nth-child(10) { animation: drawPetal 0.4s ease 1.4s forwards; }
+    .sunflower-svg .petal:nth-child(11) { animation: drawPetal 0.4s ease 1.5s forwards; }
+    .sunflower-svg .petal:nth-child(12) { animation: drawPetal 0.4s ease 1.6s forwards; }
+    .sunflower-svg .center-circle { opacity: 0; animation: fadeIn 0.5s ease 1.7s forwards; }
+    @keyframes drawPetal { to { stroke-dashoffset: 0; } }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 <body>
 
-<!-- ===== HERO ===== -->
-<section id="hero">
-<div class="hero-inner">
+<svg class="vine-left" viewBox="0 0 60 900" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 0 Q15 120 35 200 Q55 280 20 380 Q5 460 30 550 Q50 630 25 730 Q10 800 30 900" fill="none" stroke="#8fa888" stroke-width="1.5"/>
+  <ellipse cx="35" cy="200" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-25 35 200)"/>
+  <ellipse cx="20" cy="380" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(20 20 380)"/>
+  <ellipse cx="30" cy="550" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-15 30 550)"/>
+  <ellipse cx="25" cy="730" rx="6" ry="10" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(30 25 730)"/>
+</svg>
+<svg class="vine-right" viewBox="0 0 60 900" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 0 Q15 120 35 200 Q55 280 20 380 Q5 460 30 550 Q50 630 25 730 Q10 800 30 900" fill="none" stroke="#8fa888" stroke-width="1.5"/>
+  <ellipse cx="35" cy="200" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-25 35 200)"/>
+  <ellipse cx="20" cy="380" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(20 20 380)"/>
+  <ellipse cx="30" cy="550" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-15 30 550)"/>
+</svg>
 
-  <!--
-    LEFT STAGE: single SVG viewBox="0 0 460 580"
-    - Sunflower: center at (200, 310), petals going up. Fully drawn.
-    - Butterfly: starts at top-right, JS animates translate+scale
-    KEY INSIGHT: everything is pre-drawn at full opacity.
-    Butterfly simply moves via transform. No toggling opacity.
-  -->
-  <div id="stage">
-  <svg viewBox="0 0 460 580" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-    <defs>
-      <!-- SUNFLOWER gradients -->
-      <linearGradient id="sg1" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#c0da90"/>
-        <stop offset="55%" stop-color="#8aab6e"/>
-        <stop offset="100%" stop-color="#567040"/>
-      </linearGradient>
-      <linearGradient id="sg2" x1="10%" y1="0%" x2="90%" y2="100%">
-        <stop offset="0%" stop-color="#b8d488"/>
-        <stop offset="100%" stop-color="#628050"/>
-      </linearGradient>
-      <radialGradient id="dg" cx="38%" cy="34%" r="66%">
-        <stop offset="0%" stop-color="#7a9e58"/>
-        <stop offset="30%" stop-color="#4e6834"/>
-        <stop offset="65%" stop-color="#364822"/>
-        <stop offset="100%" stop-color="#1e2c0e"/>
-      </radialGradient>
-      <linearGradient id="stemg" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#587840"/>
-        <stop offset="45%" stop-color="#96be70"/>
-        <stop offset="100%" stop-color="#587840"/>
-      </linearGradient>
+<canvas id="butterfly-canvas"></canvas>
 
-      <!-- BUTTERFLY gradients — using absolute coords matching butterfly local space -->
-      <!-- Left forewing: light top-left, dark bottom-right -->
-      <radialGradient id="bwlf" cx="28%" cy="25%" r="70%" gradientUnits="objectBoundingBox">
-        <stop offset="0%" stop-color="#e0ccf8"/>
-        <stop offset="35%" stop-color="#a878d8"/>
-        <stop offset="75%" stop-color="#6030a0"/>
-        <stop offset="100%" stop-color="#3a1068"/>
-      </radialGradient>
-      <!-- Left hindwing -->
-      <radialGradient id="bwlh" cx="25%" cy="20%" r="75%" gradientUnits="objectBoundingBox">
-        <stop offset="0%" stop-color="#d0b8f0"/>
-        <stop offset="40%" stop-color="#9060c8"/>
-        <stop offset="85%" stop-color="#501888"/>
-        <stop offset="100%" stop-color="#300860"/>
-      </radialGradient>
-      <!-- Right forewing -->
-      <radialGradient id="bwrf" cx="72%" cy="25%" r="70%" gradientUnits="objectBoundingBox">
-        <stop offset="0%" stop-color="#d8c0f4"/>
-        <stop offset="35%" stop-color="#9868cc"/>
-        <stop offset="75%" stop-color="#5828a0"/>
-        <stop offset="100%" stop-color="#341068"/>
-      </radialGradient>
-      <!-- Right hindwing -->
-      <radialGradient id="bwrh" cx="70%" cy="25%" r="72%" gradientUnits="objectBoundingBox">
-        <stop offset="0%" stop-color="#c8b0e8"/>
-        <stop offset="40%" stop-color="#8858c0"/>
-        <stop offset="85%" stop-color="#481880"/>
-        <stop offset="100%" stop-color="#2c0860"/>
-      </radialGradient>
-      <!-- Body -->
-      <linearGradient id="bodg" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#1e0438"/>
-        <stop offset="35%" stop-color="#5c28a0"/>
-        <stop offset="65%" stop-color="#5c28a0"/>
-        <stop offset="100%" stop-color="#1e0438"/>
-      </linearGradient>
-    </defs>
+<main>
+  <nav>
+    <div class="nav-logo">Anushka Maji</div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!--===========================================
-        SUNFLOWER — center (200,310), fully visible
-        petals go from 118px above to 118px sides
-        =========================================-->
-
-    <!-- stem -->
-    <path d="M202,318 Q198,400 194,510" stroke="url(#stemg)" stroke-width="10" stroke-linecap="round" fill="none"/>
-    <!-- stem highlight -->
-    <path d="M204,318 Q200,400 196,508" stroke="#b0d488" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".45"/>
-
-    <!-- left leaf -->
-    <path d="M196,428 Q138,400 116,356 Q152,376 196,404Z" fill="url(#sg2)" stroke="#507838" stroke-width="1.5"/>
-    <path d="M196,428 Q162,414 154,392" stroke="#a8cc70" stroke-width="1" fill="none" opacity=".55"/>
-    <!-- right leaf -->
-    <path d="M198,448 Q258,422 278,380 Q244,398 200,426Z" fill="url(#sg1)" stroke="#507838" stroke-width="1.5"/>
-    <path d="M198,448 Q228,434 240,414" stroke="#a8cc70" stroke-width="1" fill="none" opacity=".55"/>
-
-    <!--
-      18 PETALS — each is a <g transform="rotate(N,200,310)">
-      with a vertical ellipse centered at (200, 236) = 74px above center
-      rx=19, ry=42 gives nice sunflower proportions
-    -->
-    <g opacity="1">
-      <g transform="rotate(0,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(20,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(40,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(60,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(80,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(100,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(120,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(140,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(160,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(180,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(200,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(220,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(240,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(260,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(280,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(300,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-      <g transform="rotate(320,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg1)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".45"/>
-      </g>
-      <g transform="rotate(340,200,310)">
-        <ellipse cx="200" cy="236" rx="19" ry="42" fill="url(#sg2)" stroke="#507838" stroke-width="1.2"/>
-        <ellipse cx="197" cy="238" rx="6" ry="24" fill="#d0e8a8" opacity=".4"/>
-      </g>
-    </g>
-
-    <!-- SEED DISK — drawn ON TOP of petals -->
-    <circle cx="200" cy="310" r="62" fill="url(#dg)"/>
-    <circle cx="200" cy="310" r="44" fill="#3a5228"/>
-    <circle cx="200" cy="310" r="26" fill="#1e2e0e"/>
-    <!-- disk highlight -->
-    <ellipse cx="188" cy="298" rx="20" ry="13" fill="#6a9248" opacity=".38"/>
-    <!-- seeds inner ring -->
-    <g fill="#8aab6e" opacity=".75">
-      <circle cx="200" cy="294" r="2.6"/><circle cx="210" cy="298" r="2.6"/>
-      <circle cx="215" cy="308" r="2.6"/><circle cx="210" cy="318" r="2.6"/>
-      <circle cx="200" cy="322" r="2.6"/><circle cx="190" cy="318" r="2.6"/>
-      <circle cx="185" cy="308" r="2.6"/><circle cx="190" cy="298" r="2.6"/>
-    </g>
-    <!-- seeds outer ring -->
-    <g fill="#6a9050" opacity=".6">
-      <circle cx="200" cy="282" r="2.2"/><circle cx="213" cy="285" r="2.2"/>
-      <circle cx="223" cy="294" r="2.2"/><circle cx="226" cy="308" r="2.2"/>
-      <circle cx="223" cy="320" r="2.2"/><circle cx="213" cy="329" r="2.2"/>
-      <circle cx="200" cy="332" r="2.2"/><circle cx="187" cy="329" r="2.2"/>
-      <circle cx="177" cy="320" r="2.2"/><circle cx="174" cy="308" r="2.2"/>
-      <circle cx="177" cy="294" r="2.2"/><circle cx="187" cy="285" r="2.2"/>
-    </g>
-    <!-- specular on disk -->
-    <ellipse cx="184" cy="296" rx="11" ry="8" fill="white" opacity=".07"/>
-
-    <!--===========================================
-        BUTTERFLY
-        Body center at (0,0) in LOCAL coords.
-        GROUP is translated by JS.
-        Initial position: top-right of viewBox = (390, 30)
-        Landing position: flower disk center = (200, 300)
-        scale: 1.0 flying → 0.55 resting
-
-        WINGS are drawn symmetrically.
-        Left wings use a clip/mirror approach:
-        we draw them pointing LEFT (negative x) — no scale tricks.
-        Right wings point RIGHT (positive x).
-        Wings open at start (full spread).
-        =========================================-->
-    <g id="BF">
-      <!--
-        Wing anatomy (all in local coords, body at 0,0):
-        Left forewing: large, upper-left quadrant
-        Left hindwing: lower-left, with swallowtail
-        Right forewing: upper-right (slightly smaller)
-        Right hindwing: lower-right, with swallowtail
-      -->
-
-      <!-- === LEFT FOREWING === -->
-      <!-- Shadow for depth -->
-      <path d="M-2,-10 C-28,-42 -96,-88 -116,-58 C-132,-28 -108,14 -74,38 C-50,54 -22,54 -2,38 Z"
-            fill="#2a0848" opacity=".28" transform="translate(5,7)"/>
-      <!-- Main fill -->
-      <path id="wLF" d="M-2,-10 C-28,-42 -96,-88 -116,-58 C-132,-28 -108,14 -74,38 C-50,54 -22,54 -2,38 Z"
-            fill="url(#bwlf)" stroke="#1e0438" stroke-width="2.2"/>
-      <!-- Inner lighter cell area -->
-      <path d="M-5,-8 C-20,-30 -66,-66 -84,-44 C-96,-22 -82,10 -56,26 C-36,38 -14,38 -5,22 Z"
-            fill="#d0b0f0" opacity=".55"/>
-      <!-- Wing edge shimmer -->
-      <path d="M-2,-10 C-28,-42 -96,-88 -116,-58" stroke="#d0a8f0" stroke-width="2" fill="none" opacity=".5"/>
-      <!-- Veins -->
-      <line x1="0" y1="0" x2="-72" y2="-38" stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="-92" y2="-12" stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="-66" y2="22"  stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="-38" y2="36"  stroke="#1e0438" stroke-width="1.9"/>
-      <!-- Cross veins -->
-      <line x1="-38" y1="-28" x2="-26" y2="-12" stroke="#1e0438" stroke-width=".85"/>
-      <line x1="-56" y1="-36" x2="-46" y2="-18" stroke="#1e0438" stroke-width=".85"/>
-      <line x1="-68" y1="-26" x2="-58" y2="-8" stroke="#1e0438"  stroke-width=".85"/>
-      <line x1="-32" y1="7"   x2="-20" y2="22" stroke="#1e0438"  stroke-width=".85"/>
-      <!-- White margin spots -->
-      <ellipse cx="-96" cy="-50" rx="8" ry="11" fill="white" opacity=".9"/>
-      <ellipse cx="-95" cy="-51" rx="4.5" ry="6.5" fill="#ecdff8" opacity=".7"/>
-      <ellipse cx="-88" cy="-28" rx="8" ry="11" fill="white" opacity=".9"/>
-      <ellipse cx="-87" cy="-29" rx="4.5" ry="6.5" fill="#ecdff8" opacity=".7"/>
-      <ellipse cx="-78" cy="-6"  rx="7" ry="10" fill="white" opacity=".88"/>
-      <ellipse cx="-64" cy="16"  rx="7" ry="10" fill="white" opacity=".88"/>
-      <!-- Scallop bumps along trailing edge -->
-      <circle cx="-20" cy="38" r="5" fill="#dcc8f4" opacity=".6"/>
-      <circle cx="-34" cy="44" r="5" fill="#dcc8f4" opacity=".6"/>
-      <circle cx="-48" cy="44" r="5" fill="#dcc8f4" opacity=".6"/>
-
-      <!-- === LEFT HINDWING === -->
-      <path d="M-2,32 C-14,44 -58,82 -72,106 C-76,120 -68,138 -54,130 C-40,124 -28,108 -20,92 C-12,76 -6,54 -2,40 Z"
-            fill="#2a0848" opacity=".28" transform="translate(5,7)"/>
-      <path id="wLH" d="M-2,32 C-14,44 -58,82 -72,106 C-76,120 -68,138 -54,130 C-40,124 -28,108 -20,92 C-12,76 -6,54 -2,40 Z"
-            fill="url(#bwlh)" stroke="#1e0438" stroke-width="2"/>
-      <!-- Inner lighter zone -->
-      <path d="M-4,36 C-10,48 -38,76 -50,94 C-38,88 -16,64 -4,46 Z" fill="#c0a0e8" opacity=".5"/>
-      <!-- Swallowtail curl -->
-      <path d="M-54,130 C-64,152 -54,168 -42,163 C-32,158 -30,144 -38,142"
-            stroke="#1e0438" stroke-width="2.4" fill="none"/>
-      <circle cx="-38" cy="142" r="3.5" fill="#1e0438"/>
-      <!-- Orange spots with highlight -->
-      <ellipse cx="-48" cy="120" rx="6.5" ry="9"   fill="#dc7830"/>
-      <ellipse cx="-47" cy="118" rx="3.5" ry="5"   fill="#f0a858" opacity=".75"/>
-      <ellipse cx="-60" cy="102" rx="6"   ry="8.5" fill="#dc7830"/>
-      <ellipse cx="-59" cy="100" rx="3"   ry="4.5" fill="#f0a858" opacity=".75"/>
-      <!-- Hindwing veins -->
-      <line x1="-2" y1="32" x2="-34" y2="72" stroke="#1e0438" stroke-width="1.7"/>
-      <line x1="-2" y1="32" x2="-50" y2="96" stroke="#1e0438" stroke-width="1.7"/>
-
-      <!-- === RIGHT FOREWING === -->
-      <path d="M2,-10 C26,-38 84,-80 102,-52 C116,-24 94,14 64,36 C42,50 18,50 2,36 Z"
-            fill="#2a0848" opacity=".24" transform="translate(-4,6)"/>
-      <path id="wRF" d="M2,-10 C26,-38 84,-80 102,-52 C116,-24 94,14 64,36 C42,50 18,50 2,36 Z"
-            fill="url(#bwrf)" stroke="#1e0438" stroke-width="2.2"/>
-      <path d="M5,-8 C18,-26 58,-58 74,-38 C84,-18 70,8 48,24 C30,36 10,36 5,20 Z"
-            fill="#c8a8e8" opacity=".5"/>
-      <path d="M2,-10 C26,-38 84,-80 102,-52" stroke="#c8a0e8" stroke-width="2" fill="none" opacity=".45"/>
-      <line x1="0" y1="0" x2="62" y2="-30" stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="80" y2="-10" stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="58" y2="18"  stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="0" y1="0" x2="34" y2="34"  stroke="#1e0438" stroke-width="1.9"/>
-      <line x1="34" y1="-26" x2="24" y2="-10" stroke="#1e0438" stroke-width=".85"/>
-      <line x1="50" y1="-32" x2="40" y2="-14" stroke="#1e0438" stroke-width=".85"/>
-      <ellipse cx="82"  cy="-40" rx="7.5" ry="10.5" fill="white" opacity=".9"/>
-      <ellipse cx="81"  cy="-41" rx="4"   ry="6"    fill="#ecdff8" opacity=".7"/>
-      <ellipse cx="76"  cy="-18" rx="7.5" ry="10.5" fill="white" opacity=".9"/>
-      <ellipse cx="68"  cy="4"   rx="7"   ry="9.5"  fill="white" opacity=".88"/>
-      <ellipse cx="54"  cy="24"  rx="6.5" ry="9"    fill="white" opacity=".88"/>
-      <circle cx="18"  cy="44" r="4.5" fill="#dcc8f4" opacity=".6"/>
-      <circle cx="32"  cy="48" r="4.5" fill="#dcc8f4" opacity=".6"/>
-      <circle cx="46"  cy="48" r="4.5" fill="#dcc8f4" opacity=".6"/>
-
-      <!-- === RIGHT HINDWING === -->
-      <path d="M2,32 C12,42 46,74 58,96 C62,110 56,126 42,118 C28,112 18,96 12,80 C6,64 2,46 2,36 Z"
-            fill="#2a0848" opacity=".24" transform="translate(-4,6)"/>
-      <path id="wRH" d="M2,32 C12,42 46,74 58,96 C62,110 56,126 42,118 C28,112 18,96 12,80 C6,64 2,46 2,36 Z"
-            fill="url(#bwrh)" stroke="#1e0438" stroke-width="2"/>
-      <path d="M2,36 C8,46 32,70 42,86 C32,80 16,58 2,46 Z" fill="#b8a0d8" opacity=".45"/>
-      <path d="M42,118 C52,140 42,154 30,149 C20,144 18,132 26,130"
-            stroke="#1e0438" stroke-width="2.4" fill="none"/>
-      <circle cx="26" cy="130" r="3.5" fill="#1e0438"/>
-      <ellipse cx="40" cy="110" rx="6"   ry="8.5" fill="#dc7830"/>
-      <ellipse cx="39" cy="108" rx="3.2" ry="4.8" fill="#f0a858" opacity=".75"/>
-      <line x1="2" y1="32" x2="30" y2="68"  stroke="#1e0438" stroke-width="1.7"/>
-      <line x1="2" y1="32" x2="46" y2="92"  stroke="#1e0438" stroke-width="1.7"/>
-
-      <!-- === 3D BODY === -->
-      <!-- Shadow -->
-      <ellipse cx="3" cy="14" rx="8" ry="18" fill="#0e0020" opacity=".4"/>
-      <!-- Thorax -->
-      <ellipse cx="0" cy="10" rx="8"   ry="16"  fill="url(#bodg)"/>
-      <ellipse cx="-2" cy="5" rx="4"   ry="9"   fill="#7840c8" opacity=".45"/>
-      <!-- Abdomen -->
-      <ellipse cx="0" cy="30" rx="6.5" ry="7"   fill="#2a0848"/>
-      <ellipse cx="-1.5" cy="28" rx="3" ry="3.5" fill="#6838b0" opacity=".55"/>
-      <ellipse cx="0" cy="42" rx="6.2" ry="6.6"  fill="#360c5c"/>
-      <ellipse cx="-1.5" cy="40" rx="2.8" ry="3.2" fill="#5830a8" opacity=".5"/>
-      <ellipse cx="0" cy="54" rx="5.8" ry="6.2"  fill="#2a0848"/>
-      <ellipse cx="0" cy="66" rx="5.4" ry="5.8"  fill="#360c5c"/>
-      <ellipse cx="0" cy="77" rx="5"   ry="5.4"  fill="#2a0848"/>
-      <ellipse cx="0" cy="87" rx="4.4" ry="4.8"  fill="#360c5c"/>
-      <!-- Head -->
-      <circle cx="0" cy="-6" r="8" fill="url(#bodg)"/>
-      <circle cx="-3" cy="-9" r="4" fill="#7840c8" opacity=".4"/>
-      <!-- Eyes -->
-      <circle cx="-5" cy="-8" r="2.5" fill="#0e0020"/>
-      <circle cx="-4" cy="-9" r="1"   fill="#7040b0" opacity=".6"/>
-      <circle cx="5" cy="-8"  r="2.5" fill="#0e0020"/>
-      <circle cx="4" cy="-9"  r="1"   fill="#7040b0" opacity=".6"/>
-      <!-- Antennae -->
-      <path d="M-3,-13 C-16,-36 -28,-52 -26,-68" stroke="#1e0438" stroke-width="2" fill="none"/>
-      <path d="M-3,-13 C-16,-36 -28,-52 -26,-68" stroke="#7040b8" stroke-width=".9" fill="none" opacity=".65"/>
-      <circle cx="-26" cy="-72" r="5.5" fill="#1e0438"/>
-      <circle cx="-27" cy="-73" r="2.5" fill="#9060d0" opacity=".55"/>
-      <path d="M3,-13 C16,-36 27,-52 25,-68" stroke="#1e0438" stroke-width="2" fill="none"/>
-      <path d="M3,-13 C16,-36 27,-52 25,-68" stroke="#7040b8" stroke-width=".9" fill="none" opacity=".65"/>
-      <circle cx="25" cy="-72" r="5.5" fill="#1e0438"/>
-      <circle cx="24" cy="-73" r="2.5" fill="#9060d0" opacity=".55"/>
-      <!-- 6 Legs -->
-      <path d="M-6,16 C-18,24 -28,34 -32,46" stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <path d="M-6,26 C-18,34 -28,44 -32,56" stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <path d="M-5,8  C-15,14 -23,22 -26,32"  stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <path d="M6,16  C18,24 28,34 32,46"     stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <path d="M6,26  C18,34 28,44 32,56"     stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <path d="M5,8   C15,14 23,22 26,32"     stroke="#1e0438" stroke-width="1.5" fill="none"/>
-      <!-- Body specular -->
-      <ellipse cx="-2" cy="4" rx="2.5" ry="8" fill="white" opacity=".12"/>
-    </g><!-- end #BF -->
-  </svg>
-  </div>
-
-  <!-- RIGHT: text -->
-  <div id="hero-text">
-    <h1 class="hname">Anushka<span>Maji</span></h1>
-    <p class="htag">ML Engineer <b>·</b> SRE <b>·</b> AI Product Designer <b>·</b> Researcher</p>
-    <div class="hbtns" id="hbtns">
-      <a href="#projects" class="btn btn-f">View Projects</a>
-      <a href="https://github.com/AnushkaMaji" class="btn btn-o" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/anushkamaji" class="btn btn-o" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-</div>
-<div class="nudge"><div class="nline"></div><span class="ntxt">Scroll</span></div>
-</section>
-
-<!-- STATS -->
-<section id="stats">
-  <div class="st"><div class="sn">2</div><div class="sl">IEEE Publications</div></div>
-  <div class="st"><div class="sn">2+</div><div class="sl">Projects</div></div>
-  <div class="st"><div class="sn">3.56</div><div class="sl">GPA</div></div>
-  <div class="st"><div class="sn">F-1</div><div class="sl">STEM OPT</div></div>
-  <div class="st"><div class="sn">2026</div><div class="sl">Graduating Spring</div></div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <svg class="vc" viewBox="0 0 200 200" fill="none">
-    <path d="M200 0 Q160 40 140 80 Q120 120 100 160 Q80 180 60 200" stroke="#d4c5ee" stroke-width="2"/>
-    <circle cx="155" cy="55" r="12" stroke="#d4c5ee" stroke-width="1.4" fill="none"/>
-    <circle cx="155" cy="55" r="5" fill="#d4c5ee" opacity=".4"/>
-    <path d="M155 43 Q165 38 170 28" stroke="#d4c5ee" stroke-width="1.4" fill="none"/>
-    <path d="M155 43 Q145 38 140 28" stroke="#d4c5ee" stroke-width="1.4" fill="none"/>
-    <circle cx="115" cy="130" r="9" stroke="#8aab6e" stroke-width="1.4" fill="none"/>
-    <circle cx="115" cy="130" r="4" fill="#8aab6e" opacity=".4"/>
-  </svg>
-  <div class="ab-in">
-    <div><h2 class="ab-h">Building<br/>things that<br/><em>matter.</em></h2></div>
-    <div class="ab-b">
-      <p>I'm <strong>Anushka Maji</strong>, an MS Computer Engineering student at Arizona State University (GPA 3.56, graduating Spring 2026) focused on machine learning systems, site reliability engineering, and AI product design.</p>
-      <p>My work sits at the intersection of <strong>research and production</strong> — I care as much about mathematical foundations as about serving models reliably at scale.</p>
-      <p>I hold <strong>two IEEE First Author publications</strong>, spanning computer vision, sensor fusion, and edge-deployed ML.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <svg class="pbg" viewBox="0 0 400 440" fill="none">
-    <line x1="200" y1="310" x2="196" y2="435" stroke="#8aab6e" stroke-width="22" stroke-linecap="round"/>
-    <path d="M196 370 Q145 348 122 310 Q155 328 198 355Z" fill="#8aab6e"/>
-    <path d="M198 390 Q252 370 274 332 Q244 348 200 375Z" fill="#8aab6e"/>
-    <g opacity="1">
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(0,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(30,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(60,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(90,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(120,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(150,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(180,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(210,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(240,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(270,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(300,200,240)"/>
-      <ellipse cx="200" cy="170" rx="26" ry="66" fill="#8aab6e" transform="rotate(330,200,240)"/>
-    </g>
-    <circle cx="200" cy="240" r="54" fill="#5a7848"/>
-    <circle cx="200" cy="240" r="34" fill="#3d5a2e"/>
-  </svg>
-  <div class="slbl">Selected Work</div>
-  <h2 class="sh">Projects</h2>
-  <div class="deck">
-    <div class="cards-wrap" id="cards">
-      <div class="card" data-i="0">
-        <div class="cnum">01</div>
-        <h3 class="ctit">ML Model Serving API</h3>
-        <p class="cdesc">Production-grade REST API for ML predictions at scale. FastAPI + scikit-learn + PostgreSQL, containerized with Docker. Random Forest, sub-50ms latency, Prometheus metrics.</p>
-        <div class="ctags"><span class="tag tp">FastAPI</span><span class="tag ts">scikit-learn</span><span class="tag tp">PostgreSQL</span><span class="tag ts">Docker</span><span class="tag tc">Random Forest</span></div>
-        <a href="https://github.com/AnushkaMaji/ml-serving-api" class="clink" target="_blank" rel="noopener">View on GitHub →</a>
+  <!-- HERO -->
+  <div id="hero">
+    <section style="display:flex;flex-direction:column;align-items:center;">
+      <div class="sunflower-wrap">
+        <svg class="sunflower-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(50,50)">
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(0)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(30)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(60)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(90)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(120)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(150)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(180)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(210)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(240)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(270)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(300)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(330)"/>
+            <circle class="center-circle" cx="0" cy="0" r="13" fill="#4a2c4a" stroke="#6b3f6b" stroke-width="1"/>
+            <circle class="center-circle" cx="0" cy="0" r="8" fill="none" stroke="#8fa888" stroke-width="0.8" stroke-dasharray="2 2"/>
+          </g>
+        </svg>
       </div>
-      <div class="card" data-i="1">
-        <div class="cnum">02</div>
-        <h3 class="ctit">Real-Time Data Pipeline</h3>
-        <p class="cdesc">High-throughput streaming pipeline processing millions of events/hour. Apache Kafka, Prometheus + Grafana dashboards, containerized microservices with configurable alerting.</p>
-        <div class="ctags"><span class="tag tp">Apache Kafka</span><span class="tag ts">Prometheus</span><span class="tag tp">Grafana</span><span class="tag ts">Docker</span><span class="tag tc">Streaming</span></div>
-        <a href="https://github.com/AnushkaMaji/real-time-pipeline" class="clink" target="_blank" rel="noopener">View on GitHub →</a>
+      <p class="hero-eyebrow">ML Engineer · SRE · ASU MS Computer Engineering</p>
+      <h1 class="hero-name">Anushka <em>Maji</em></h1>
+      <p class="hero-tagline">I build systems that learn, scale, and survive production.</p>
+      <p class="hero-sub">IEEE first-author · GPA 3.56 · graduating Spring 2027 · F-1 STEM OPT eligible</p>
+      <div class="hero-cta-row">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/AnushkaMaji" target="_blank" class="btn-ghost">GitHub</a>
       </div>
-    </div>
-    <div class="dctl">
-      <button class="darr" id="dprev">&#8592;</button>
-      <div class="ddots" id="ddots"></div>
-      <button class="darr" id="dnext">&#8594;</button>
-    </div>
+    </section>
   </div>
-</section>
 
-<!-- PUBLICATIONS -->
-<section id="pub">
-  <div class="slbl">Research</div>
-  <h2 class="sh">Publications</h2>
-  <div class="pub-list">
-    <div class="pub-c" data-p="0">
-      <div class="pm">IEEE ICCES 2024 · First Author · Feb 2025</div>
-      <h3 class="pt">"Designing of Smart Pothole Detection System"</h3>
-      <p class="pd">ML pipeline combining Random Forest, XGBoost, and SVM on IoT sensor data. TensorFlow Lite edge deployment with 90%+ accuracy and real-time road condition monitoring.</p>
-      <span class="pbdg">First Author</span>
-    </div>
-    <div class="pub-c" data-p="1">
-      <div class="pm">IRTM 2024 · First Author · Dec 2024</div>
-      <h3 class="pt">"Comprehensive Study on Pothole Detection Techniques"</h3>
-      <p class="pd">Systematic survey of sensor fusion, computer vision, and ML approaches to road quality assessment, evaluating accuracy vs hardware constraints across urban environments.</p>
-      <span class="pbdg">First Author</span>
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-band">
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Portfolio Projects</div></div>
+      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">IEEE Publications</div></div>
+      <div class="stat-item"><div class="stat-num">3.56</div><div class="stat-label">GPA</div></div>
+      <div class="stat-item"><div class="stat-num">Sp '27</div><div class="stat-label">Graduating</div></div>
+      <div class="stat-item"><div class="stat-num">STEM</div><div class="stat-label">OPT Eligible</div></div>
     </div>
   </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="slbl">Technical Expertise</div>
-  <h2 class="sh">Skills</h2>
-  <div class="sg" id="sg">
-    <span class="sk a">Python</span><span class="sk b">TensorFlow</span><span class="sk c">PyTorch</span>
-    <span class="sk a">scikit-learn</span><span class="sk b">FastAPI</span><span class="sk c">Docker</span>
-    <span class="sk a">Apache Kafka</span><span class="sk b">PostgreSQL</span><span class="sk c">Random Forest</span>
-    <span class="sk a">XGBoost</span><span class="sk b">Prometheus</span><span class="sk c">Grafana</span>
-    <span class="sk a">TensorFlow Lite</span><span class="sk b">Computer Vision</span><span class="sk c">Sensor Fusion</span>
-    <span class="sk a">Deep Learning</span><span class="sk b">SQL</span><span class="sk c">Git</span>
-    <span class="sk a">Linux</span><span class="sk b">Jupyter</span><span class="sk c">REST APIs</span>
-    <span class="sk a">Ensemble Methods</span><span class="sk b">IoT Systems</span><span class="sk c">MLOps</span>
-  </div>
-</section>
+  <!-- PROJECTS -->
+  <div id="projects">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// portfolio</p>
+        <h2 class="section-title">Seven systems, <em>production-grade</em></h2>
+      </div>
+      <div class="projects-grid">
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="pet" style="width:300px;height:300px;top:-80px;left:-80px;transform:rotate(28deg)"></div>
-  <div class="pet" style="width:200px;height:200px;bottom:-60px;right:-45px;transform:rotate(-18deg)"></div>
-  <h2 class="ch">Let's work<br/>together.</h2>
-  <p class="cs">Open to full-time roles, research collaborations, and internships.</p>
-  <a href="mailto:amaji123@asu.edu" class="ce">amaji123@asu.edu</a>
-</section>
+        <div class="project-card">
+          <div class="card-number">01 / ML SERVING API</div>
+          <h3 class="card-title">Containerised Inference Service</h3>
+          <p class="card-desc">FastAPI REST endpoint wrapping a scikit-learn Random Forest classifier, PostgreSQL for prediction logging, Docker for reproducible deployment.</p>
+          <div class="card-stack">fastapi · sklearn · postgresql · docker</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/ml-serving-api" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="fvw">
-    <svg viewBox="0 0 1200 90" width="100%" preserveAspectRatio="none" fill="none">
-      <path d="M0 55 Q100 30 200 50 Q300 70 400 48 Q500 28 600 50 Q700 70 800 46 Q900 24 1000 50 Q1100 72 1200 48" stroke="#4a2a6e" stroke-width="2" opacity=".6"/>
-      <g transform="translate(240,50)"><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7"/><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7" transform="rotate(60,0,0)"/><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7" transform="rotate(120,0,0)"/><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7" transform="rotate(180,0,0)"/><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7" transform="rotate(240,0,0)"/><ellipse cx="0" cy="-14" rx="5" ry="9" fill="#9370c0" opacity=".7" transform="rotate(300,0,0)"/><circle r="6" fill="#d4c5ee"/><path d="M-6 8 Q-20 12 -22 22 Q-12 16 -6 8Z" fill="#8aab6e" opacity=".7"/><path d="M6 8 Q20 12 22 22 Q12 16 6 8Z" fill="#8aab6e" opacity=".7"/></g>
-      <g transform="translate(600,50)"><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8"/><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8" transform="rotate(60,0,0)"/><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8" transform="rotate(120,0,0)"/><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8" transform="rotate(180,0,0)"/><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8" transform="rotate(240,0,0)"/><ellipse cx="0" cy="-13" rx="5" ry="8" fill="#d4c5ee" opacity=".8" transform="rotate(300,0,0)"/><circle r="5" fill="#9370c0"/><path d="M-5 7 Q-18 10 -20 20 Q-10 14 -5 7Z" fill="#8aab6e" opacity=".7"/><path d="M5 7 Q18 10 20 20 Q10 14 5 7Z" fill="#8aab6e" opacity=".7"/></g>
-      <g transform="translate(960,50)"><ellipse cx="0" cy="-12" rx="5" ry="8" fill="#9370c0" opacity=".7"/><ellipse cx="0" cy="-12" rx="5" ry="8" fill="#9370c0" opacity=".7" transform="rotate(72,0,0)"/><ellipse cx="0" cy="-12" rx="5" ry="8" fill="#9370c0" opacity=".7" transform="rotate(144,0,0)"/><ellipse cx="0" cy="-12" rx="5" ry="8" fill="#9370c0" opacity=".7" transform="rotate(216,0,0)"/><ellipse cx="0" cy="-12" rx="5" ry="8" fill="#9370c0" opacity=".7" transform="rotate(288,0,0)"/><circle r="5" fill="#d4c5ee"/><path d="M-5 7 Q-18 10 -20 20 Q-10 14 -5 7Z" fill="#8aab6e" opacity=".7"/><path d="M5 7 Q18 10 20 20 Q10 14 5 7Z" fill="#8aab6e" opacity=".7"/></g>
-    </svg>
+        <div class="project-card">
+          <div class="card-number">02 / REAL-TIME PIPELINE</div>
+          <h3 class="card-title">Live Observability Stack</h3>
+          <p class="card-desc">Kafka message bus feeding a six-panel Grafana dashboard, full Prometheus metrics scraping, all orchestrated with Docker Compose.</p>
+          <div class="card-stack">kafka · prometheus · grafana · docker-compose</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/real-time-pipeline" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-number">03 / AWS SERVERLESS ML</div>
+          <h3 class="card-title">Fraud Detection API</h3>
+          <p class="card-desc">Lambda (container image) + API Gateway fraud-scoring endpoint, S3 + ECR for storage, CloudWatch for observability. Infra as code with Terraform.</p>
+          <div class="card-stack">lambda · api-gateway · ecr · s3 · terraform</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/aws-serverless-ml" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+            <a href="https://rsp2qh4oh8.execute-api.us-east-1.amazonaws.com/prod/predict" target="_blank" class="card-link">
+              <span class="card-live-dot"></span> Live
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-number">04 / KUBERNETES + CI/CD</div>
+          <h3 class="card-title">Auto-Scaling ML Deploy</h3>
+          <p class="card-desc">Minikube cluster with HPA scaling 2→10 pods under load, GitHub Actions CI/CD pipeline pushing to DockerHub on every merge to main.</p>
+          <div class="card-stack">minikube · kubectl · hpa · github-actions · dockerhub</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/k8s-ml-deploy" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-number">05 / MLFLOW PIPELINE</div>
+          <h3 class="card-title">End-to-End Training System</h3>
+          <p class="card-desc">Trains Logistic Regression, Random Forest, and XGBoost on fraud data. XGBoost auto-promoted to Production (F1: 1.0000). MinIO artifact store + PostgreSQL backend.</p>
+          <div class="card-stack">mlflow · xgboost · minio · postgresql · github-actions</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/mlflow-pipeline" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-number">06 / RAG PIPELINE</div>
+          <h3 class="card-title">Research Paper Q&amp;A Engine</h3>
+          <p class="card-desc">RAG pipeline over 2 first-author IEEE papers. Ask natural language questions, get answers grounded in real research. PyMuPDF → sentence-transformers → ChromaDB → Llama 3.3 70B via Groq. Prometheus monitoring.</p>
+          <div class="card-stack">pymupdf · chromadb · groq · llama-3.3-70b · fastapi · prometheus</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/rag-ieee-papers" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card" style="grid-column:2;">
+          <div class="card-badge">Prototype</div>
+          <div class="card-number">07 / BRAKEIQ</div>
+          <h3 class="card-title">Brake Technician Mobile App</h3>
+          <p class="card-desc">Cross-platform brake technician reference app built from a real product brief. Covers 13 vehicles across 6 brands with AI-assisted Q&amp;A and WhatsApp escalation. Shipped solo from idea to live deployment.</p>
+          <div class="card-stack">react-native · expo · netlify · whatsapp-api</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/brakeiq" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+            <a href="https://brakeiq.netlify.app" target="_blank" class="card-link">
+              <span class="card-live-dot"></span> Live
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </div>
-  <div class="fb">
-    <div class="fn">Anushka Maji</div>
-    <div class="fc">© 2026 · MS Computer Engineering · ASU</div>
-    <div class="fl">
-      <a href="https://github.com/AnushkaMaji" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:amaji123@asu.edu">Email</a>
-    </div>
+
+  <!-- ABOUT -->
+  <div id="about">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// about</p>
+        <h2 class="section-title">T-shaped, <em>Kolkata-grown</em></h2>
+      </div>
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p>I'm a machine learning engineer who thinks in systems — from the model checkpoint to the Kubernetes pod that serves it at 3am when latency spikes.</p>
+          <p>My research background (two IEEE first-author papers on ML for infrastructure) gives me the habit of measuring before claiming. My editorial background — Editor in Chief of my undergraduate magazine — means I care how the work is explained, not just whether it runs.</p>
+          <p>Currently at ASU finishing my MS. Targeting ML Engineer and SRE roles where the infra and the intelligence are inseparable.</p>
+        </div>
+        <div class="about-credentials">
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>MS Computer Engineering</strong>
+              <span>Arizona State University · GPA 3.56 · Spring 2027</span>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>2 × IEEE First Author</strong>
+              <span>ICCES 2024 · IRTM 2024 — Pothole Detection with ML</span>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>Chancellor's Gold Medal</strong>
+              <span>Overall Best Student — IEM Kolkata</span>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>Research — NUS Singapore</strong>
+              <span>IoT Systems · selective international program</span>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>F-1 · STEM OPT Eligible</strong>
+              <span>No sponsorship required for OPT period</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</footer>
+
+  <!-- CONTACT -->
+  <div id="contact">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// contact</p>
+        <h2 class="section-title">Let's <em>build something</em></h2>
+      </div>
+      <div class="contact-inner reveal">
+        <p>I'm actively looking for ML Engineer and SRE roles starting Spring 2027 (or internships sooner). If your team cares about observable, reproducible ML systems — let's talk.</p>
+        <div class="contact-links">
+          <a href="https://github.com/AnushkaMaji" target="_blank" class="btn-primary">GitHub</a>
+          <a href="mailto:amaji123@asu.edu" class="btn-ghost">Email</a>
+          <a href="https://www.linkedin.com/in/anushkamaji" target="_blank" class="btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div>© 2026 Anushka Maji</div>
+    <span>built with intention · deployed with terraform</span>
+  </footer>
+</main>
 
 <script>
-/* ================================================================
-   BUTTERFLY ANIMATION
-   SVG viewBox = "0 0 460 580"
-   Sunflower disk center = (200, 310)
-   Butterfly body at (0,0) in local space.
-
-   Flight: starts at (400, 35) scale 1.1 (top-right)
-   Landing: (200, 300) scale 0.55 (on flower disk)
-   The transform on #BF is:  translate(X,Y) scale(S)
-   ================================================================ */
-(function(){
-  var BF = document.getElementById('BF');
-
-  /* Bezier control points (in SVG viewBox coords) */
-  var P0={x:400,y:35}, P1={x:320,y:70}, P2={x:240,y:180}, P3={x:200,y:295};
-
-  function bez(t){
-    var u=1-t;
-    return {
-      x: u*u*u*P0.x + 3*u*u*t*P1.x + 3*u*t*t*P2.x + t*t*t*P3.x,
-      y: u*u*u*P0.y + 3*u*u*t*P1.y + 3*u*t*t*P2.y + t*t*t*P3.y
-    };
-  }
-
-  /* Set the group transform */
-  function setPos(x, y, scale){
-    BF.setAttribute('transform', 'translate('+x+','+y+') scale('+scale+')');
-  }
-
-  /* Wing flutter: we animate a CSS custom property... but for SVG
-     we just wobble the whole group slightly + use wing-open state.
-     Wings are pre-drawn fully open. We shrink them during flutter
-     by adding a scale to each wing group. */
-  var wLF = document.getElementById('wLF');
-  var wLH = document.getElementById('wLH');
-  var wRF = document.getElementById('wRF');
-  var wRH = document.getElementById('wRH');
-
-  function setWingOpen(frac){
-    /* frac 0..1 — how open the wings are.
-       Left wings: scaleX negative (they face left), magnitude = frac
-       Right wings: scaleX positive, magnitude = frac * 0.88 */
-    var L = Math.max(frac, 0.05);
-    var R = Math.max(frac * 0.9, 0.05);
-    wLF.setAttribute('transform', 'scale('+L+',1)');
-    wLH.setAttribute('transform', 'scale('+L+',1)');
-    wRF.setAttribute('transform', 'scale('+R+',1)');
-    wRH.setAttribute('transform', 'scale('+R+',1)');
-  }
-
-  var FLY_MS=2800, LAND_MS=680;
-  var phase='flying', T0=null, wPhase=0, wSpd=0.20;
-
-  function tick(ts){
-    if(!T0) T0=ts;
-    var el=ts-T0;
-
-    /* Wing animation */
-    wPhase+=wSpd;
-    setWingOpen(Math.abs(Math.sin(wPhase)));
-
-    if(phase==='flying'){
-      var t=Math.min(el/FLY_MS,1);
-      var p=bez(t);
-      var wobY=Math.sin(el*0.013)*11+Math.sin(el*0.027)*5;
-      setPos(p.x, p.y+wobY, 1.1);
-      if(t>=1){phase='landing';T0=ts;wSpd=0.16;}
-
-    }else if(phase==='landing'){
-      var lt=Math.min(el/LAND_MS,1);
-      var ease=1-Math.pow(1-lt,3);
-      var sc=1.1-(1.1-0.55)*ease;
-      var y=P3.y+ease*15;
-      setPos(P3.x, y, sc);
-      if(lt>=1){
-        phase='resting';T0=ts;wSpd=0.028;
-        document.getElementById('hero-text').classList.add('show');
-        setTimeout(function(){document.getElementById('hbtns').classList.add('show');},380);
-      }
-
-    }else if(phase==='resting'){
-      var bob=Math.sin(el*0.0028)*2.2;
-      setPos(P3.x, P3.y+15+bob, 0.55);
+  // Butterfly
+  (function() {
+    const canvas = document.getElementById('butterfly-canvas');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    function makePath() {
+      const W = canvas.width, H = canvas.height;
+      return [[W*0.1,H*0.3],[W*0.3,H*0.1],[W*0.6,H*0.4],[W*0.85,H*0.2],[W*0.75,H*0.6],[W*0.5,H*0.8],[W*0.2,H*0.65],[W*0.1,H*0.3]];
     }
-    requestAnimationFrame(tick);
-  }
+    function bezierPoint(p0,p1,p2,p3,t) {
+      const mt=1-t;
+      return [mt**3*p0[0]+3*mt**2*t*p1[0]+3*mt*t**2*p2[0]+t**3*p3[0], mt**3*p0[1]+3*mt**2*t*p1[1]+3*mt*t**2*p2[1]+t**3*p3[1]];
+    }
+    let t=0, path=makePath(), lastX=0, lastY=0, flapPhase=0;
+    window.addEventListener('resize', ()=>{ path=makePath(); });
+    function drawButterfly(x,y,angle,flapT) {
+      ctx.save(); ctx.translate(x,y); ctx.rotate(angle);
+      const flapAngle = Math.sin(flapT*Math.PI*2)*0.4;
+      [{r:16,ry:10,color:'rgba(201,184,216,0.55)'},{r:12,ry:7,color:'rgba(143,168,136,0.45)'}].forEach((w)=>{
+        [-1,1].forEach(side=>{
+          ctx.save(); ctx.scale(side,1); ctx.rotate(flapAngle);
+          ctx.beginPath(); ctx.ellipse(w.r*0.6,0,w.r,w.ry,Math.PI*0.25,0,Math.PI*2);
+          ctx.fillStyle=w.color; ctx.fill(); ctx.restore();
+        });
+      });
+      ctx.beginPath(); ctx.ellipse(0,0,1.5,8,0,0,Math.PI*2); ctx.fillStyle='rgba(74,44,74,0.5)'; ctx.fill();
+      ctx.restore();
+    }
+    function animate() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      t=(t+0.0012)%1;
+      const seg=Math.floor(t*(path.length-1));
+      const segT=(t*(path.length-1))-seg;
+      const p0=path[Math.max(0,seg-1)], p1=path[seg], p2=path[Math.min(path.length-1,seg+1)], p3=path[Math.min(path.length-1,seg+2)];
+      const [x,y]=bezierPoint(p0,p1,p2,p3,segT);
+      const angle=Math.atan2(y-lastY,x-lastX);
+      lastX=x; lastY=y; flapPhase=(flapPhase+0.08)%1;
+      drawButterfly(x,y,angle,flapPhase);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  })();
 
-  /* Set initial position before first frame so it's not at 0,0 */
-  setPos(P0.x, P0.y, 1.1);
-  setTimeout(function(){ requestAnimationFrame(tick); }, 80);
-})();
-
-/* ================================================================
-   CARD DECK
-   ================================================================ */
-(function(){
-  var cards=Array.from(document.querySelectorAll('.card'));
-  var dotsEl=document.getElementById('ddots');
-  var cur=0, timer=null;
-  cards.forEach(function(_,i){
-    var d=document.createElement('div');
-    d.className='dot'+(i===0?' active':'');
-    d.addEventListener('click',function(){go(i);});
-    dotsEl.appendChild(d);
-  });
-  function go(idx){
-    cards.forEach(function(c){c.classList.remove('active','prev');});
-    document.querySelectorAll('.dot').forEach(function(d){d.classList.remove('active');});
-    cards[cur].classList.add('prev');
-    cur=(idx+cards.length)%cards.length;
-    cards[cur].classList.add('active');
-    document.querySelectorAll('.dot')[cur].classList.add('active');
-  }
-  cards[0].classList.add('active');
-  function startA(){timer=setInterval(function(){go(cur+1);},3000);}
-  function stopA(){clearInterval(timer);}
-  startA();
-  document.querySelector('.deck').addEventListener('mouseenter',stopA);
-  document.querySelector('.deck').addEventListener('mouseleave',startA);
-  document.getElementById('dnext').addEventListener('click',function(){stopA();go(cur+1);startA();});
-  document.getElementById('dprev').addEventListener('click',function(){stopA();go(cur-1);startA();});
-})();
-
-/* ================================================================
-   SCROLL REVEALS
-   ================================================================ */
-(function(){
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting)return;
-      var el=e.target;
-      if(el.classList.contains('pub-c'))
-        setTimeout(function(){el.classList.add('show');},parseInt(el.dataset.p||0)*200);
-      if(el.classList.contains('sk'))
-        setTimeout(function(){el.classList.add('show');},parseInt(el.dataset.si||0)*48);
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.stat-item,.project-card,.section-header,.credential,.reveal');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        const siblings=Array.from(entry.target.parentElement.children);
+        const idx=siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay=`${idx*0.08}s`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
   },{threshold:0.12});
-  document.querySelectorAll('.pub-c').forEach(function(el){obs.observe(el);});
-  document.querySelectorAll('.sk').forEach(function(el,i){el.dataset.si=i;obs.observe(el);});
-})();
+  revealEls.forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
