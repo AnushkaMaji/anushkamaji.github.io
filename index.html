@@ -3,1080 +3,1100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anushka Maji | ML Engineer & SRE</title>
-  <meta name="description" content="Portfolio of Anushka Maji — ML Engineer, SRE, Cloud Infrastructure. FastAPI, Kubernetes, Kafka, AWS, MLflow, Docker." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Anushka Maji — ML Engineer & SRE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
-    /* ============================================================
-       COLOR SYSTEM AND GLOBAL TOKENS
-       ============================================================ */
+    /* ── CSS Variables ── */
     :root {
-      --cream: #f5f0e8;
-      --lavender: #d4c5ee;
-      --deep-lavender: #9370c0;
-      --button-purple: #7a4fa3;
-      --sage: #8aab6e;
-      --light-sage: #d4e8c2;
-      --plum: #3a1f52;
-      --footer-plum: #2a1440;
-      --ink: #23162f;
-      --white: #ffffff;
-      --soft-shadow: 0 26px 70px rgba(58, 31, 82, 0.16);
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Jost", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
-      --max-width: 1180px;
+      --lavender:  #c9b8d8;
+      --sage:      #8fa888;
+      --cream:     #f5f0e8;
+      --plum:      #4a2c4a;
+      --plum-mid:  #6b3f6b;
+      --blush:     #e8d5c4;
+      --ink:       #2c1f2c;
+      --mono:      'JetBrains Mono', monospace;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --sans:      'Jost', sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      background: var(--cream);
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: var(--sans);
-      color: var(--plum);
       background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
       overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-weight: 700;
-      color: var(--button-purple);
-      margin-bottom: 18px;
-    }
-
-    .section-label::before {
-      content: "";
-      width: 42px;
-      height: 1px;
-      background: currentColor;
-      display: inline-block;
-    }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 900ms ease, transform 900ms cubic-bezier(.19,1,.22,1);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ============================================================
-       HERO SECTION
-       ============================================================ */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: grid;
-      align-items: center;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 12% 15%, rgba(212, 197, 238, 0.42), transparent 28%),
-        radial-gradient(circle at 86% 82%, rgba(212, 232, 194, 0.38), transparent 30%);
-      opacity: 0;
-      animation: pageWake 1.2s ease 0.25s forwards;
-      z-index: -2;
-    }
-
-    @keyframes pageWake { to { opacity: 1; } }
-
-    .hero-grid {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 28px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-
-
-    .hero-copy {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 1;
-      max-width: 720px;
-      width: 100%;
-    }
-
-
-    .eyebrow {
-      font-size: 0.83rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--sage);
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(5rem, 8.8vw, 7rem);
-      line-height: 0.82;
-      margin: 0;
-      color: var(--plum);
-      letter-spacing: -0.055em;
-    }
-
-    h1 span { display: block; }
-
-    .tagline {
-      font-size: clamp(1rem, 1.7vw, 1.2rem);
-      color: rgba(58, 31, 82, 0.78);
-      margin: 30px 0 10px;
-      letter-spacing: 0.035em;
-    }
-
-    .tagline-sub {
-      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-      color: rgba(58, 31, 82, 0.55);
-      margin: 0 0 28px;
-      font-family: var(--mono);
-      letter-spacing: 0.01em;
-    }
-
-    .button-row {
-      justify-content: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: buttonRise 700ms ease 0.8s forwards;
-    }
-
-    @keyframes buttonRise { to { opacity: 1; transform: translateY(0); } }
-
-    .btn {
-      min-width: 136px;
-      padding: 13px 21px;
-      border-radius: 999px;
-      border: 1.5px solid var(--button-purple);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
-    }
-
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 24px rgba(122, 79, 163, 0.18); }
-    .btn-primary { background: var(--button-purple); color: white; }
-    .btn-outline { color: var(--button-purple); background: rgba(255,255,255,0.25); }
-
-    .scroll-nudge {
-      position: absolute;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      font-size: 0.72rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(58, 31, 82, 0.56);
-      opacity: 0;
-      animation: nudgeIn 800ms ease 1.2s forwards;
-    }
-
-    .scroll-nudge::after {
-      content: "";
-      display: block;
-      width: 1px;
-      height: 38px;
-      margin: 10px auto 0;
-      background: var(--sage);
-      animation: nudgeLine 1.5s ease-in-out infinite;
-    }
-
-    @keyframes nudgeIn { to { opacity: 1; } }
-    @keyframes nudgeLine { 0%,100% { transform: scaleY(0.45); opacity: .45; } 50% { transform: scaleY(1); opacity: 1; } }
-
-
-
-    /* Butterfly */
-    .butterfly-wrap {
+    /* ── Butterfly Canvas ── */
+    #butterfly-canvas {
       position: fixed;
-      left: calc(100vw - 190px);
-      top: -170px;
-      width: 160px;
-      height: 150px;
-      z-index: 10;
-      transform-origin: center;
-      animation: butterflyFlight 3.05s cubic-bezier(.42,0,.22,1) 0.85s forwards,
-                 butterflySettle 1.1s ease-in-out 3.9s forwards;
-    }
-
-    @keyframes butterflyFlight {
-      0% { left: calc(100vw - 190px); top: -170px; width: 160px; transform: rotate(-18deg) translate(0, 0); }
-      18% { transform: rotate(-7deg) translate(-18px, 30px); }
-      39% { transform: rotate(-20deg) translate(22px, -10px); }
-      63% { transform: rotate(10deg) translate(-20px, 24px); }
-      100% { left: calc((100vw - min(1180px, 100vw)) / 2 + 272px); top: 172px; width: 160px; transform: rotate(-13deg) translate(0, 0); }
-    }
-
-    @keyframes butterflySettle {
-      to { left: calc((100vw - min(1180px, 100vw)) / 2 + 286px); top: 235px; width: 68px; transform: rotate(-15deg); }
-    }
-
-    .butterfly-svg {
-      width: 100%;
-      height: auto;
-      overflow: visible;
-    }
-
-    .wing-left { transform-origin: 79px 73px; animation: flutterLeft 160ms ease-in-out 0.9s infinite alternate; }
-    .wing-right { transform-origin: 81px 73px; animation: flutterRight 160ms ease-in-out 0.9s infinite alternate; }
-    .butterfly-wrap.landed .wing-left { animation: breatheLeft 2.5s ease-in-out infinite alternate; }
-    .butterfly-wrap.landed .wing-right { animation: breatheRight 2.5s ease-in-out infinite alternate; }
-
-    @keyframes flutterLeft { to { transform: rotateY(41deg) rotate(-2deg); } }
-    @keyframes flutterRight { to { transform: rotateY(-41deg) rotate(2deg); } }
-    @keyframes breatheLeft { to { transform: rotateY(12deg) rotate(-1deg); } }
-    @keyframes breatheRight { to { transform: rotateY(-12deg) rotate(1deg); } }
-
-    .ink-purple { stroke: #4c1684; stroke-width: 2.1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .ink-light { stroke: #6a29aa; stroke-width: 1.25; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .wing-wash { fill: rgba(147, 112, 192, 0.26); stroke: #4c1684; stroke-width: 2.1; }
-    .spot { fill: #fffdf8; stroke: #4c1684; stroke-width: 1.15; }
-    .tail-accent { fill: #d78142; opacity: 0.86; }
-
-    /* ============================================================
-       STATS BAND
-       ============================================================ */
-    .stats-band {
-      background: var(--sage);
-      color: var(--cream);
-      padding: 28px 0;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      text-align: center;
-    }
-
-    .stat strong {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat span {
-      display: block;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-top: 6px;
-      font-weight: 700;
-    }
-
-    /* ============================================================
-       ABOUT SECTION
-       ============================================================ */
-    .about {
-      background: var(--plum);
-      color: var(--cream);
-      padding: 112px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .vine-corner {
-      position: absolute;
-      right: -36px;
-      top: -20px;
-      width: 370px;
-      opacity: 0.22;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 70px;
-      align-items: start;
-    }
-
-    .about h2, .projects h2, .publications h2, .skills h2, .contact h2 {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 5.4vw, 5.2rem);
-      line-height: 0.9;
-      margin: 0 0 24px;
-      letter-spacing: -0.04em;
-    }
-
-    .about p {
-      font-size: clamp(1.05rem, 1.6vw, 1.23rem);
-      line-height: 1.82;
-      margin: 0;
-      color: rgba(245, 240, 232, 0.82);
-    }
-
-    /* ============================================================
-       PROJECTS SECTION: 6-CARD GRID
-       ============================================================ */
-    .projects {
-      padding: 116px 0 126px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .projects-bg-flower {
-      position: absolute;
-      width: 720px;
-      height: 720px;
-      right: -140px;
-      top: 80px;
-      opacity: 0.07;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
-      transform: rotate(8deg);
+      z-index: 0;
     }
 
-    .projects-head {
+    /* ── Vine decoratives ── */
+    .vine-left, .vine-right {
+      position: fixed;
+      top: 0;
+      width: 60px;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.45;
+    }
+    .vine-left  { left: 0; }
+    .vine-right { right: 0; transform: scaleX(-1); }
+
+    /* ── Layout ── */
+    main { position: relative; z-index: 2; }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
-      gap: 32px;
-      align-items: end;
-      margin-bottom: 52px;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(74,44,74,0.08);
     }
 
-    .projects-head p {
-      max-width: 430px;
-      line-height: 1.7;
-      color: rgba(58, 31, 82, 0.66);
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--plum);
+      letter-spacing: 0.02em;
     }
 
-    /* 6-card grid */
-    .project-grid {
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--plum-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--sage); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 5rem;
+      position: relative;
+    }
+
+    .sunflower-wrap {
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: bloomIn 1.2s cubic-bezier(0.34,1.56,0.64,1) 0.4s forwards;
+    }
+
+    @keyframes bloomIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.9s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--plum);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.1s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--plum-mid);
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--plum);
+      margin-top: 1.2rem;
+      max-width: 560px;
+      line-height: 1.55;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.3s forwards;
+    }
+
+    .hero-sub {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--sage);
+      margin-top: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.45s forwards;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.6s forwards;
+    }
+
+    .btn-primary {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: var(--plum);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--plum-mid); transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: var(--plum);
+      border: 1px solid var(--plum);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { background: var(--plum); color: var(--cream); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS BAND ── */
+    #stats {
+      padding: 0;
+    }
+
+    .stats-band {
+      background: var(--plum);
+      color: var(--cream);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 220px;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid rgba(245,240,232,0.12);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stat-item:last-child { border-right: none; }
+    .stat-item.visible { opacity: 1; transform: translateY(0); }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--lavender);
+    }
+
+    .stat-label {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.65);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section-header.visible { opacity: 1; transform: translateY(0); }
+
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--plum);
+      line-height: 1.1;
+    }
+
+    .section-title em { font-style: italic; }
+
+    /* ── PROJECTS GRID ── */
+    #projects {
+      padding: 7rem 2rem;
+    }
+
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      position: relative;
-      z-index: 1;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Make last card (7th) centered when it's alone in its row */
+    .project-card:last-child:nth-child(3n+1) {
+      grid-column: 2;
     }
 
     .project-card {
-      background: white;
-      border-radius: 28px;
-      box-shadow: var(--soft-shadow);
-      padding: 32px 28px 28px;
-      border: 1px solid rgba(147, 112, 192, 0.13);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: transform 280ms cubic-bezier(.19,1,.22,1), box-shadow 280ms ease;
+      background: #fff;
+      border: 1px solid rgba(74,44,74,0.10);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
+      cursor: default;
     }
 
-    .project-card.is-visible {
+    .project-card.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lavender), var(--sage));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
     .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 36px 80px rgba(58, 31, 82, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(74,44,74,0.12);
+      border-color: rgba(74,44,74,0.22);
     }
 
-    .project-number {
-      font-family: var(--serif);
-      font-size: 3.4rem;
-      line-height: 0.8;
-      color: rgba(138, 171, 110, 0.55);
-      margin-bottom: 12px;
-    }
+    .project-card:hover::before { transform: scaleX(1); }
 
-    .project-card h3 {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.2vw, 2rem);
-      line-height: 1.0;
-      margin: 0 0 10px;
-      color: var(--plum);
-      letter-spacing: -0.03em;
-    }
-
-    .project-card p {
-      line-height: 1.7;
-      color: rgba(58, 31, 82, 0.66);
-      font-size: 0.93rem;
-      margin: 0 0 16px;
-      flex: 1;
-    }
-
-    /* Terminal stack line */
-    .stack-line {
+    .card-number {
       font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--button-purple);
-      background: rgba(122, 79, 163, 0.07);
-      border: 1px solid rgba(122, 79, 163, 0.15);
-      border-radius: 6px;
-      padding: 7px 10px;
-      margin-bottom: 14px;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--lavender);
+      margin-bottom: 0.9rem;
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--plum);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-desc {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #3a2a3a;
+      margin-bottom: 1.2rem;
+    }
+
+    /* terminal stack line */
+    .card-stack {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.04em;
+      color: var(--sage);
+      background: rgba(143,168,136,0.08);
+      border: 1px solid rgba(143,168,136,0.2);
+      border-left: 3px solid var(--sage);
+      padding: 0.45rem 0.7rem;
+      margin-bottom: 1.3rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: 0.01em;
     }
 
-    .stack-line::before {
-      content: "$ ";
-      color: var(--sage);
-      font-weight: 700;
+    .card-stack::before {
+      content: '$ ';
+      color: var(--lavender);
+      font-weight: 500;
     }
-
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    .tag { padding: 6px 11px; border-radius: 999px; font-size: 0.73rem; font-weight: 800; letter-spacing: .03em; }
-    .tag.sage { background: var(--light-sage); color: #486432; }
-    .tag.purple { background: var(--lavender); color: var(--plum); }
 
     .card-links {
       display: flex;
-      gap: 14px;
-      align-items: center;
-      margin-top: auto;
-    }
-
-    .github-link {
-      color: var(--button-purple);
-      font-weight: 800;
-      font-size: 0.88rem;
-      display: inline-flex;
-      gap: 6px;
+      gap: 1rem;
       align-items: center;
     }
 
-    .live-link {
-      color: var(--sage);
-      font-weight: 800;
-      font-size: 0.88rem;
-      display: inline-flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    /* ============================================================
-       PUBLICATIONS SECTION
-       ============================================================ */
-    .publications {
-      background: var(--lavender);
-      padding: 116px 0;
-      overflow: hidden;
-    }
-
-    .publication-list {
-      display: grid;
-      gap: 22px;
-      margin-top: 38px;
-    }
-
-    .paper {
-      background: rgba(255,255,255,0.76);
-      border-radius: 28px;
-      padding: 32px;
-      box-shadow: 0 18px 44px rgba(58, 31, 82, 0.1);
-      transform: translateX(-46px);
-    }
-
-    .paper.is-visible { transform: translateX(0); }
-
-    .paper-meta {
-      color: var(--button-purple);
-      font-size: .82rem;
-      letter-spacing: .14em;
+    .card-link {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .paper h3 {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      margin: 0 0 12px;
-      line-height: 1;
-      color: var(--plum);
-    }
-
-    .paper p { color: rgba(58,31,82,.73); line-height: 1.7; margin: 0; }
-
-    /* ============================================================
-       SKILLS SECTION
-       ============================================================ */
-    .skills {
-      padding: 112px 0;
-      background: var(--cream);
-    }
-
-    .skill-cloud {
+      color: var(--plum-mid);
+      text-decoration: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 36px;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
     }
 
-    .skill-tag {
-      transform: scale(0.65) translateY(12px);
-      opacity: 0;
-      padding: 12px 17px;
-      border-radius: 999px;
-      font-weight: 800;
-      box-shadow: 0 12px 24px rgba(58,31,82,.08);
-      transition: transform 650ms cubic-bezier(.17, 1.35, .35, 1), opacity 400ms ease;
+    .card-link:hover { color: var(--sage); }
+
+    .card-link svg { width: 11px; height: 11px; }
+
+    .card-live-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      margin-right: 0.3rem;
+      animation: pulse 2s infinite;
     }
 
-    .skill-tag.is-visible { transform: scale(1) translateY(0); opacity: 1; }
-    .skill-tag.white-purple { background: white; color: var(--button-purple); }
-    .skill-tag.sage { background: var(--sage); color: var(--cream); }
-    .skill-tag.lavender { background: var(--lavender); color: var(--plum); }
-
-    /* ============================================================
-       CONTACT SECTION
-       ============================================================ */
-    .contact {
-      background: var(--plum);
-      color: var(--cream);
-      padding: 110px 0;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
-    .petal-cloud {
+    /* client badge */
+    .card-badge {
       position: absolute;
-      inset: 0;
-      opacity: 0.13;
-      pointer-events: none;
+      top: 1rem; right: 1rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--sage);
+      padding: 0.2rem 0.5rem;
     }
 
-    .contact p {
-      max-width: 650px;
-      margin: 0 auto 30px;
-      line-height: 1.75;
-      color: rgba(245,240,232,.8);
-      font-size: 1.14rem;
+    /* ── ABOUT ── */
+    #about {
+      padding: 7rem 2rem;
+      background: linear-gradient(180deg, var(--cream) 0%, rgba(201,184,216,0.08) 100%);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .about-text p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--plum);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .credential {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .credential.visible { opacity: 1; transform: translateX(0); }
+
+    .cred-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--plum);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cred-icon svg { width: 16px; height: 16px; fill: var(--cream); }
+
+    .cred-text strong {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 0.15rem;
+    }
+
+    .cred-text span {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--plum-mid);
+      opacity: 0.9;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 7rem 2rem;
+    }
+
+    .contact-inner {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 7rem 2rem;
+      background: var(--plum);
+    }
+
+    #contact .section-eyebrow {
+      color: var(--lavender);
+    }
+
+    #contact .section-title {
+      color: var(--cream);
+    }
+
+    #contact .section-title em {
+      color: var(--lavender);
+    }
+
+    .contact-inner p {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(245,240,232,0.80);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
     }
 
     .contact-links {
       display: flex;
+      gap: 1.5rem;
       justify-content: center;
-      gap: 14px;
       flex-wrap: wrap;
     }
 
-    .contact-links a {
-      border: 1px solid rgba(245,240,232,.42);
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 800;
+    #contact .btn-primary {
+      background: var(--cream);
+      color: var(--plum);
+    }
+
+    #contact .btn-primary:hover {
+      background: var(--lavender);
+      color: var(--plum);
+    }
+
+    #contact .btn-ghost {
+      border-color: var(--cream);
       color: var(--cream);
     }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
+    #contact .btn-ghost:hover {
+      background: var(--cream);
+      color: var(--plum);
+    }
+
+    /* ── FOOTER ── */
     footer {
-      background: var(--footer-plum);
-      color: var(--cream);
-      position: relative;
-      padding: 84px 0 34px;
-      overflow: hidden;
-    }
-
-    .footer-vine {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 78px;
-      opacity: 0.9;
-    }
-
-    .footer-row {
+      border-top: 1px solid rgba(245,240,232,0.15);
+      background: var(--plum);
+      padding: 2rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 34px;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      color: rgba(245,240,232,0.45);
     }
 
-    .footer-name {
-      font-family: var(--serif);
-      font-size: 2.2rem;
-      letter-spacing: -0.03em;
+    footer span { font-family: var(--mono); }
+
+    /* ── SUNFLOWER SVG inline ── */
+    .sunflower-svg {
+      width: 90px;
+      height: 90px;
     }
 
-    .footer-links { display: flex; gap: 20px; font-weight: 800; }
-    .copyright { text-align: center; color: rgba(245,240,232,.55); font-size: .88rem; }
-
-    /* ============================================================
-       BOTANICAL SVG REUSE
-       ============================================================ */
-    .botanical-stroke { stroke: var(--sage); fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .botanical-fill { fill: var(--light-sage); }
-
-    /* ============================================================
-       RESPONSIVE DESIGN
-       ============================================================ */
-    @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
-      .hero-copy {
-      display: flex;
-      flex-direction: column;
-      align-items: center; text-align: center; }
-      .button-row {
-      justify-content: center; justify-content: center; }
-      .about-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid .stat:last-child { grid-column: 1 / -1; }
-      .projects-head { display: block; }
-      .project-grid { grid-template-columns: repeat(2, 1fr); }
-      .butterfly-wrap { display: none; }
+    /* petal draw animations */
+    .sunflower-svg .petal {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
     }
 
-    @media (max-width: 620px) {
-      .container { padding: 0 20px; }
-      h1 { font-size: clamp(4.1rem, 17vw, 5rem); }
-      .hero-grid { padding-left: 20px; padding-right: 20px; }
-      .project-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .stats-grid .stat:last-child { grid-column: auto; }
-      .footer-row { flex-direction: column; text-align: center; }
-      .stack-line { font-size: 0.65rem; }
-    }
+    .sunflower-svg .petal:nth-child(1)  { animation: drawPetal 0.4s ease 0.5s forwards; }
+    .sunflower-svg .petal:nth-child(2)  { animation: drawPetal 0.4s ease 0.6s forwards; }
+    .sunflower-svg .petal:nth-child(3)  { animation: drawPetal 0.4s ease 0.7s forwards; }
+    .sunflower-svg .petal:nth-child(4)  { animation: drawPetal 0.4s ease 0.8s forwards; }
+    .sunflower-svg .petal:nth-child(5)  { animation: drawPetal 0.4s ease 0.9s forwards; }
+    .sunflower-svg .petal:nth-child(6)  { animation: drawPetal 0.4s ease 1.0s forwards; }
+    .sunflower-svg .petal:nth-child(7)  { animation: drawPetal 0.4s ease 1.1s forwards; }
+    .sunflower-svg .petal:nth-child(8)  { animation: drawPetal 0.4s ease 1.2s forwards; }
+    .sunflower-svg .petal:nth-child(9)  { animation: drawPetal 0.4s ease 1.3s forwards; }
+    .sunflower-svg .petal:nth-child(10) { animation: drawPetal 0.4s ease 1.4s forwards; }
+    .sunflower-svg .petal:nth-child(11) { animation: drawPetal 0.4s ease 1.5s forwards; }
+    .sunflower-svg .petal:nth-child(12) { animation: drawPetal 0.4s ease 1.6s forwards; }
 
-    /* ============================================================
-       NAME REVEAL — per-letter rise from below with stagger
-       ============================================================ */
-    h1 {
-      overflow: visible;
-    }
-
-    .name-letter {
-      display: inline-block;
+    .sunflower-svg .center-circle {
       opacity: 0;
-      transform: translateY(48px) rotate(4deg);
-      animation: letterRise 700ms cubic-bezier(.19,1,.22,1) forwards;
+      animation: fadeIn 0.5s ease 1.7s forwards;
     }
 
-    /* "Anushka" — letters 0-6, start at 0.15s */
-    .name-letter:nth-child(1)  { animation-delay: 0.15s; }
-    .name-letter:nth-child(2)  { animation-delay: 0.22s; }
-    .name-letter:nth-child(3)  { animation-delay: 0.29s; }
-    .name-letter:nth-child(4)  { animation-delay: 0.36s; }
-    .name-letter:nth-child(5)  { animation-delay: 0.43s; }
-    .name-letter:nth-child(6)  { animation-delay: 0.50s; }
-    .name-letter:nth-child(7)  { animation-delay: 0.57s; }
-    /* space */
-    .name-letter:nth-child(8)  { animation-delay: 0.60s; }
-    /* "Maji" — letters 8-11 */
-    .name-letter:nth-child(9)  { animation-delay: 0.67s; }
-    .name-letter:nth-child(10) { animation-delay: 0.74s; }
-    .name-letter:nth-child(11) { animation-delay: 0.81s; }
-    .name-letter:nth-child(12) { animation-delay: 0.88s; }
-
-    @keyframes letterRise {
-      to { opacity: 1; transform: translateY(0) rotate(0deg); }
+    @keyframes drawPetal {
+      to { stroke-dashoffset: 0; }
     }
 
-    /* Thin decorative underline draws in under "Maji" */
-    .name-underline {
-      display: block;
-      height: 3px;
-      background: linear-gradient(90deg, var(--sage), var(--lavender));
-      border-radius: 99px;
-      width: 0;
-      margin-top: 6px;
-      animation: underlineDraw 700ms cubic-bezier(.19,1,.22,1) 1.0s forwards;
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
-    @keyframes underlineDraw { to { width: 100%; } }
+    /* ── Scroll reveal helper ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
   </style>
 </head>
 <body>
-  <!-- ============================================================
-       HERO SECTION: FLOWER, BUTTERFLY, NAME, TAGLINE, BUTTONS
-       ============================================================ -->
-  <main class="hero" id="top">
-    <div class="butterfly-wrap" id="butterfly" aria-hidden="true">
-      <svg class="butterfly-svg" viewBox="0 0 160 150" role="img" aria-label="Purple swallowtail butterfly sketch">
-        <g class="wing-left">
-          <path class="wing-wash" d="M79 72 C45 17, 6 3, 4 34 C0 70, 26 91, 62 90 C46 103, 33 124, 24 143 C47 133, 69 109, 79 72 Z" />
-          <path class="ink-purple" d="M79 72 C54 48, 35 28, 7 18 M76 75 C47 67, 25 57, 4 34 M70 82 C48 84, 35 93, 24 143 M62 90 C50 105, 41 123, 36 138" />
-          <path class="ink-light" d="M21 25 C28 43, 33 62, 32 83 M40 29 C44 50, 49 68, 58 87 M59 42 C56 57, 61 68, 73 77 M18 91 C28 97, 39 99, 51 96 M29 111 C39 115, 48 115, 59 105" />
-          <path class="ink-light" d="M17 34 C34 31, 45 35, 58 47 M12 51 C30 52, 42 58, 55 68 M12 68 C27 70, 40 76, 54 86" />
-          <ellipse class="spot" cx="21" cy="23" rx="6" ry="8" transform="rotate(-36 21 23)" />
-          <ellipse class="spot" cx="34" cy="30" rx="6" ry="9" transform="rotate(-24 34 30)" />
-          <ellipse class="spot" cx="47" cy="37" rx="6" ry="10" transform="rotate(-17 47 37)" />
-          <ellipse class="spot" cx="15" cy="47" rx="5" ry="7" />
-          <ellipse class="spot" cx="18" cy="68" rx="5" ry="7" />
-          <ellipse class="spot" cx="29" cy="96" rx="6" ry="8" />
-          <ellipse class="spot" cx="39" cy="116" rx="5" ry="7" transform="rotate(31 39 116)" />
-          <circle class="tail-accent" cx="50" cy="116" r="3.7" />
-          <path class="ink-light" d="M39 131 q-9 10 -14 12 q-5 2 -3 -3 q2 -5 10 -9" />
-          <path class="ink-light" d="M23 101 q9 6 18 5 M17 79 q12 6 25 5 M15 58 q12 5 27 6" />
-        </g>
-        <g class="wing-right">
-          <path class="wing-wash" d="M82 72 C106 21, 145 9, 153 38 C163 73, 137 92, 103 91 C122 105, 132 124, 139 144 C116 135, 91 110, 82 72 Z" />
-          <path class="ink-purple" d="M82 72 C104 49, 125 31, 151 22 M85 75 C111 67, 133 59, 153 38 M91 83 C111 85, 128 96, 139 144 M103 91 C116 108, 124 127, 128 139" />
-          <path class="ink-light" d="M139 29 C133 47, 129 65, 130 84 M121 32 C116 52, 110 70, 100 87 M102 44 C106 58, 101 69, 88 77 M141 91 C130 98, 118 100, 106 96 M131 111 C121 116, 111 116, 100 105" />
-          <path class="ink-light" d="M143 36 C125 33, 113 36, 100 48 M148 52 C130 53, 118 59, 105 69 M148 69 C132 71, 120 76, 106 86" />
-          <ellipse class="spot" cx="139" cy="26" rx="6" ry="8" transform="rotate(36 139 26)" />
-          <ellipse class="spot" cx="126" cy="32" rx="6" ry="9" transform="rotate(24 126 32)" />
-          <ellipse class="spot" cx="113" cy="39" rx="6" ry="10" transform="rotate(17 113 39)" />
-          <ellipse class="spot" cx="145" cy="50" rx="5" ry="7" />
-          <ellipse class="spot" cx="143" cy="70" rx="5" ry="7" />
-          <ellipse class="spot" cx="130" cy="97" rx="6" ry="8" />
-          <ellipse class="spot" cx="121" cy="117" rx="5" ry="7" transform="rotate(-31 121 117)" />
-          <circle class="tail-accent" cx="109" cy="116" r="3.7" />
-          <path class="ink-light" d="M121 131 q9 10 14 12 q5 2 3 -3 q-2 -5 -10 -9" />
-          <path class="ink-light" d="M137 101 q-9 6 -18 5 M143 80 q-12 6 -25 5 M145 59 q-12 5 -27 6" />
-        </g>
-        <g class="body">
-          <path class="ink-purple" d="M78 55 C74 69, 75 88, 82 107 C89 89, 88 68, 83 55 Z" />
-          <path class="ink-light" d="M77 66 L86 66 M76 75 L87 75 M77 84 L86 84 M79 94 L85 94" />
-          <circle cx="80" cy="50" r="7" fill="#4c1684" />
-          <path class="ink-purple" d="M77 46 C64 31, 55 23, 46 20 M83 46 C95 30, 105 22, 115 19" />
-          <circle cx="45" cy="20" r="2.6" fill="#4c1684" />
-          <circle cx="116" cy="19" r="2.6" fill="#4c1684" />
-          <path class="ink-light" d="M74 74 q-10 2 -18 10 M86 74 q10 2 18 10 M74 84 q-10 5 -15 16 M87 84 q10 5 15 16 M78 95 q-8 6 -11 16 M84 95 q8 6 11 16" />
-        </g>
-      </svg>
-    </div>
 
-    <div class="hero-grid">
-      
-      <section class="hero-copy" aria-labelledby="hero-title">
-        <div class="eyebrow">ML Engineering · SRE · Cloud Infrastructure</div>
-        <h1 id="hero-title"><span class="name-letter">A</span><span class="name-letter">n</span><span class="name-letter">u</span><span class="name-letter">s</span><span class="name-letter">h</span><span class="name-letter">k</span><span class="name-letter">a</span><span class="name-letter" style="display:inline-block;width:0.35em"> </span><span class="name-letter">M</span><span class="name-letter">a</span><span class="name-letter">j</span><span class="name-letter">i</span><span class="name-underline"></span></h1>
-        <p class="tagline">I build ML systems that survive production.</p>
-        <p class="tagline-sub">FastAPI · Kubernetes · Kafka · AWS · MLflow · Docker</p>
-        <div class="button-row">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn btn-outline" href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn btn-outline" href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a>
+<!-- Vine decoratives -->
+<svg class="vine-left" viewBox="0 0 60 900" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 0 Q15 120 35 200 Q55 280 20 380 Q5 460 30 550 Q50 630 25 730 Q10 800 30 900" fill="none" stroke="#8fa888" stroke-width="1.5"/>
+  <ellipse cx="35" cy="200" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-25 35 200)"/>
+  <ellipse cx="20" cy="380" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(20 20 380)"/>
+  <ellipse cx="30" cy="550" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-15 30 550)"/>
+  <ellipse cx="25" cy="730" rx="6" ry="10" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(30 25 730)"/>
+</svg>
+<svg class="vine-right" viewBox="0 0 60 900" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 0 Q15 120 35 200 Q55 280 20 380 Q5 460 30 550 Q50 630 25 730 Q10 800 30 900" fill="none" stroke="#8fa888" stroke-width="1.5"/>
+  <ellipse cx="35" cy="200" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-25 35 200)"/>
+  <ellipse cx="20" cy="380" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(20 20 380)"/>
+  <ellipse cx="30" cy="550" rx="8" ry="12" fill="none" stroke="#8fa888" stroke-width="1" transform="rotate(-15 30 550)"/>
+</svg>
+
+<!-- Butterfly canvas -->
+<canvas id="butterfly-canvas"></canvas>
+
+<main>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Anushka Maji</div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <section style="display:flex;flex-direction:column;align-items:center;">
+      <div class="sunflower-wrap">
+        <!-- Hand-drawn sunflower SVG with staggered petal animations -->
+        <svg class="sunflower-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Petals (12, rotated 30° each) -->
+          <g transform="translate(50,50)">
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(0)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(30)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(60)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(90)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(120)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(150)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(180)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(210)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(240)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(270)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(300)"/>
+            <ellipse class="petal" cx="0" cy="-34" rx="7" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.2" transform="rotate(330)"/>
+            <!-- Center -->
+            <circle class="center-circle" cx="0" cy="0" r="13" fill="#4a2c4a" stroke="#6b3f6b" stroke-width="1"/>
+            <circle class="center-circle" cx="0" cy="0" r="8" fill="none" stroke="#8fa888" stroke-width="0.8" stroke-dasharray="2 2"/>
+          </g>
+        </svg>
+      </div>
+
+      <p class="hero-eyebrow">ML Engineer · SRE · ASU MS Computer Engineering</p>
+      <h1 class="hero-name">Anushka <em>Maji</em></h1>
+      <p class="hero-tagline">I build systems that learn, scale, and survive production.</p>
+      <p class="hero-sub">IEEE first-author · GPA 3.56 · graduating Spring 2027 · F-1 STEM OPT eligible</p>
+
+      <div class="hero-cta-row">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/AnushkaMaji" target="_blank" class="btn-ghost">GitHub</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- STATS BAND -->
+  <div id="stats">
+    <div class="stats-band">
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Portfolio Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">IEEE Publications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3.56</div>
+        <div class="stat-label">GPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Sp '27</div>
+        <div class="stat-label">Graduating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">STEM</div>
+        <div class="stat-label">OPT Eligible</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// portfolio</p>
+        <h2 class="section-title">Seven systems, <em>production-grade</em></h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- P1: ML Serving API -->
+        <div class="project-card">
+          <div class="card-number">01 / ML SERVING API</div>
+          <h3 class="card-title">Containerised Inference Service</h3>
+          <p class="card-desc">FastAPI REST endpoint wrapping a scikit-learn Random Forest classifier, PostgreSQL for prediction logging, Docker for reproducible deployment.</p>
+          <div class="card-stack">fastapi · sklearn · postgresql · docker</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/ml-serving-api" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
         </div>
-      </section>
-    </div>
-    <a class="scroll-nudge" href="#stats">Scroll</a>
-  </main>
 
-  <!-- ============================================================
-       STATS BAND
-       ============================================================ -->
-  <section class="stats-band" id="stats">
-    <div class="container stats-grid">
-      <div class="stat"><strong>2</strong><span>IEEE Publications</span></div>
-      <div class="stat"><strong>6</strong><span>Projects</span></div>
-      <div class="stat"><strong>3.56</strong><span>GPA</span></div>
-      <div class="stat"><strong>F-1</strong><span>STEM OPT</span></div>
-      <div class="stat"><strong>Spring 2027</strong><span>Graduate</span></div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       ABOUT SECTION
-       ============================================================ -->
-  <section class="about" id="about">
-    <svg class="vine-corner" viewBox="0 0 300 300" aria-hidden="true">
-      <path d="M290 20 C225 70 230 135 164 160 C92 188 72 239 30 286" stroke="#d4c5ee" stroke-width="3" fill="none" stroke-linecap="round" />
-      <g fill="none" stroke="#d4e8c2" stroke-width="2" stroke-linecap="round">
-        <path d="M223 73 C197 56 184 61 173 77 C198 87 211 87 223 73Z" />
-        <path d="M184 151 C198 126 214 119 234 124 C222 148 205 158 184 151Z" />
-        <path d="M96 214 C71 199 57 207 48 224 C72 232 86 229 96 214Z" />
-      </g>
-    </svg>
-    <div class="container about-grid reveal">
-      <div>
-        <span class="section-label">About</span>
-        <h2>Built with precision, presented with softness.</h2>
-      </div>
-      <p>
-        I am a Computer Engineering graduate student at Arizona State University building at the intersection of machine learning, reliable systems, and elegant product experiences. My work spans model serving, streaming data infrastructure, research-driven ML pipelines, and observability-first engineering — designed to be both technically rigorous and visually memorable.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PROJECTS SECTION: 6-CARD GRID
-       ============================================================ -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <div class="projects-head reveal">
-        <div>
-          <span class="section-label">Selected Work</span>
-          <h2>Projects in bloom.</h2>
+        <!-- P2: Real-Time Pipeline -->
+        <div class="project-card">
+          <div class="card-number">02 / REAL-TIME PIPELINE</div>
+          <h3 class="card-title">Live Observability Stack</h3>
+          <p class="card-desc">Kafka message bus feeding a six-panel Grafana dashboard, full Prometheus metrics scraping, all orchestrated with Docker Compose.</p>
+          <div class="card-stack">kafka · prometheus · grafana · docker-compose</div>
+          <div class="card-links">
+            <a href="https://github.com/AnushkaMaji/real-time-pipeline" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
         </div>
-        <p>Six production-grade projects spanning ML serving, streaming, cloud infrastructure, orchestration, and mobile — with real deployments and operational depth.</p>
-      </div>
 
-      <div class="project-grid">
-
-        <!-- Card 1: ML Serving API -->
-        <article class="project-card">
-          <div class="project-number">01</div>
-          <h3>ML Model Serving API</h3>
-          <p>Production-style ML serving with FastAPI, scikit-learn Random Forest inference, PostgreSQL persistence, and containerized deployment with clear API contracts.</p>
-          <div class="stack-line">fastapi · sklearn · postgresql · docker</div>
-          <div class="tags">
-            <span class="tag purple">FastAPI</span><span class="tag sage">scikit-learn</span><span class="tag purple">PostgreSQL</span><span class="tag sage">Docker</span>
-          </div>
+        <!-- P3: AWS Serverless ML -->
+        <div class="project-card">
+          <div class="card-number">03 / AWS SERVERLESS ML</div>
+          <h3 class="card-title">Fraud Detection API</h3>
+          <p class="card-desc">Lambda (container image) + API Gateway fraud-scoring endpoint, S3 + ECR for storage, CloudWatch for observability. Infra as code with Terraform.</p>
+          <div class="card-stack">lambda · api-gateway · ecr · s3 · terraform</div>
           <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/ml-serving-api" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="https://github.com/AnushkaMaji/aws-serverless-ml" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+            <a href="https://rsp2qh4oh8.execute-api.us-east-1.amazonaws.com/prod/predict" target="_blank" class="card-link">
+              <span class="card-live-dot"></span> Live
+            </a>
           </div>
-        </article>
+        </div>
 
-        <!-- Card 2: Real-Time Pipeline -->
-        <article class="project-card">
-          <div class="project-number">02</div>
-          <h3>Real-Time Data Pipeline</h3>
-          <p>Streaming analytics with Apache Kafka, cluster administration, Prometheus metrics collection, Grafana dashboards, and Docker-compose infrastructure.</p>
-          <div class="stack-line">kafka · prometheus · grafana · docker</div>
-          <div class="tags">
-            <span class="tag purple">Apache Kafka</span><span class="tag sage">Prometheus</span><span class="tag purple">Grafana</span><span class="tag sage">Docker</span>
-          </div>
+        <!-- P4: Kubernetes -->
+        <div class="project-card">
+          <div class="card-number">04 / KUBERNETES + CI/CD</div>
+          <h3 class="card-title">Auto-Scaling ML Deploy</h3>
+          <p class="card-desc">Minikube cluster with HPA scaling 2→10 pods under load, GitHub Actions CI/CD pipeline pushing to DockerHub on every merge to main.</p>
+          <div class="card-stack">minikube · kubectl · hpa · github-actions · dockerhub</div>
           <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/real-time-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="https://github.com/AnushkaMaji/k8s-ml-deploy" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
           </div>
-        </article>
+        </div>
 
-        <!-- Card 3: Serverless ML on AWS -->
-        <article class="project-card">
-          <div class="project-number">03</div>
-          <h3>Serverless ML on AWS</h3>
-          <p>Fraud detection model deployed serverless via Lambda + API Gateway, containerized with ECR, artifact storage on S3, infrastructure as code with Terraform.</p>
-          <div class="stack-line">lambda · api-gateway · s3 · ecr · terraform</div>
-          <div class="tags">
-            <span class="tag purple">AWS Lambda</span><span class="tag sage">Terraform</span><span class="tag purple">ECR</span><span class="tag sage">S3</span>
-          </div>
+        <!-- P5: MLflow Pipeline -->
+        <div class="project-card">
+          <div class="card-number">05 / MLFLOW PIPELINE</div>
+          <h3 class="card-title">End-to-End Training System</h3>
+          <p class="card-desc">Trains Logistic Regression, Random Forest, and XGBoost on fraud data. XGBoost auto-promoted to Production (F1: 1.0000). MinIO artifact store + PostgreSQL backend.</p>
+          <div class="card-stack">mlflow · xgboost · minio · postgresql · github-actions</div>
           <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/aws-serverless-ml" target="_blank" rel="noreferrer">GitHub →</a>
-            <a class="live-link" href="https://rsp2qh4oh8.execute-api.us-east-1.amazonaws.com/prod/predict" target="_blank" rel="noreferrer">Live ↗</a>
+            <a href="https://github.com/AnushkaMaji/mlflow-pipeline" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
           </div>
-        </article>
+        </div>
 
-        <!-- Card 4: Kubernetes CI/CD -->
-        <article class="project-card">
-          <div class="project-number">04</div>
-          <h3>Kubernetes + CI/CD</h3>
-          <p>ML workloads on Minikube with Horizontal Pod Autoscaler scaling from 2→10 pods under load, PostgreSQL persistence, and GitHub Actions deployment pipeline.</p>
-          <div class="stack-line">kubernetes · hpa · github-actions · postgresql</div>
-          <div class="tags">
-            <span class="tag purple">Kubernetes</span><span class="tag sage">HPA 2→10 pods</span><span class="tag purple">GitHub Actions</span>
-          </div>
+        <!-- RAG Pipeline -->
+        <div class="project-card">
+          <div class="card-number">06 / RAG PIPELINE</div>
+          <h3 class="card-title">Research Paper Q&A Engine</h3>
+          <p class="card-desc">RAG pipeline over 2 first-author IEEE papers. Ask natural language questions, get answers grounded in real research. PyMuPDF extraction → sentence-transformers embeddings → ChromaDB vector store → Llama 3.3 70B via Groq. Prometheus monitoring.</p>
+          <div class="card-stack">pymupdf · chromadb · groq · llama-3.3-70b · fastapi · prometheus</div>
           <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/k8s-ml-deploy" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="https://github.com/AnushkaMaji/rag-ieee-papers" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
           </div>
-        </article>
+        </div>
 
-        <!-- Card 5: MLflow Pipeline -->
-        <article class="project-card">
-          <div class="project-number">05</div>
-          <h3>MLflow Training Pipeline</h3>
-          <p>End-to-end ML lifecycle with Logistic Regression, Random Forest, XGBoost experiment tracking, model registry, retraining scripts, MinIO artifact store, and CI/CD.</p>
-          <div class="stack-line">mlflow · xgboost · minio · docker · github-actions</div>
-          <div class="tags">
-            <span class="tag purple">MLflow</span><span class="tag sage">XGBoost</span><span class="tag purple">MinIO</span><span class="tag sage">Docker Compose</span>
-          </div>
+        <!-- BrakeIQ: Client project -->
+        <div class="project-card">
+          <div class="card-badge">Client</div>
+          <div class="card-number">07 / BRAKEIQ</div>
+          <h3 class="card-title">Brake Technician Mobile App</h3>
+          <p class="card-desc">React Native + Expo app for automotive brake technicians. Three screens: Home, Manual reference, and Ask AI with WhatsApp escalation. Deployed to Netlify.</p>
+          <div class="card-stack">react-native · expo · netlify · whatsapp-api</div>
           <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/mlflow-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="https://github.com/AnushkaMaji/brakeiq" target="_blank" class="card-link">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+            <a href="https://brakeiq.netlify.app" target="_blank" class="card-link">
+              <span class="card-live-dot"></span> Live
+            </a>
           </div>
-        </article>
-
-        <!-- Card 6: BrakeIQ -->
-        <article class="project-card">
-          <div class="project-number">06</div>
-          <h3>BrakeIQ — Mobile App</h3>
-          <p>Client-facing brake technician manual app built with React Native + Expo, deployed to the web via Netlify. Responsive, offline-capable, real production use.</p>
-          <div class="stack-line">react-native · expo · netlify · typescript</div>
-          <div class="tags">
-            <span class="tag purple">React Native</span><span class="tag sage">Expo</span><span class="tag purple">Netlify</span><span class="tag sage">TypeScript</span>
-          </div>
-          <div class="card-links">
-            <a class="github-link" href="https://github.com/AnushkaMaji/brakeiq" target="_blank" rel="noreferrer">GitHub →</a>
-            <a class="live-link" href="https://brakeiq.netlify.app" target="_blank" rel="noreferrer">Live ↗</a>
-          </div>
-        </article>
+        </div>
 
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- ============================================================
-       PUBLICATIONS SECTION
-       ============================================================ -->
-  <section class="publications" id="publications">
-    <div class="container">
-      <span class="section-label reveal">Publications</span>
-      <h2 class="reveal">Research with a signal.</h2>
-      <div class="publication-list">
-        <article class="paper reveal">
-          <div class="paper-meta">IEEE ICCES 2024 · First Author · Feb 2025</div>
-          <h3>Designing of Smart Pothole Detection System</h3>
-          <p>ML pipeline using Random Forest, XGBoost, and SVM on IoT sensor data with TensorFlow Lite deployment and 90%+ accuracy.</p>
-        </article>
-        <article class="paper reveal">
-          <div class="paper-meta">IRTM 2024 · First Author · Dec 2024</div>
-          <h3>Comprehensive Study on Pothole Detection Techniques</h3>
-          <p>A survey of sensor fusion, computer vision, and machine learning approaches for practical road-surface intelligence.</p>
-        </article>
+  <!-- ABOUT -->
+  <div id="about">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// about</p>
+        <h2 class="section-title">T-shaped, <em>Kolkata-grown</em></h2>
       </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SKILLS SECTION
-       ============================================================ -->
-  <section class="skills" id="skills">
-    <div class="container">
-      <span class="section-label reveal">Skills</span>
-      <h2 class="reveal">A garden of tools.</h2>
-      <div class="skill-cloud" id="skillCloud">
-        <span class="skill-tag white-purple">Python</span><span class="skill-tag sage">Java</span><span class="skill-tag lavender">TypeScript</span><span class="skill-tag white-purple">FastAPI</span><span class="skill-tag sage">Docker</span><span class="skill-tag lavender">Kubernetes</span><span class="skill-tag white-purple">AWS</span><span class="skill-tag sage">PostgreSQL</span><span class="skill-tag lavender">Apache Kafka</span><span class="skill-tag white-purple">Prometheus</span><span class="skill-tag sage">Grafana</span><span class="skill-tag lavender">CI/CD</span><span class="skill-tag white-purple">MLflow</span><span class="skill-tag sage">scikit-learn</span><span class="skill-tag lavender">XGBoost</span><span class="skill-tag white-purple">Terraform</span><span class="skill-tag sage">TensorFlow Lite</span><span class="skill-tag lavender">Linux</span><span class="skill-tag white-purple">GitHub Actions</span>
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p>I'm a machine learning engineer who thinks in systems — from the model checkpoint to the Kubernetes pod that serves it at 3am when latency spikes.</p>
+          <p>My research background (two IEEE first-author papers on ML for infrastructure) gives me the habit of measuring before claiming. My editorial background — Editor in Chief of my undergraduate magazine — means I care how the work is explained, not just whether it runs.</p>
+          <p>Currently at ASU finishing my MS. Targeting ML Engineer and SRE roles where the infra and the intelligence are inseparable.</p>
+        </div>
+
+        <div class="about-credentials">
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>MS Computer Engineering</strong>
+              <span>Arizona State University · GPA 3.56 · Spring 2027</span>
+            </div>
+          </div>
+
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>2 × IEEE First Author</strong>
+              <span>ICCES 2024 · IRTM 2024 — Pothole Detection with ML</span>
+            </div>
+          </div>
+
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>Chancellor's Gold Medal</strong>
+              <span>Overall Best Student — IEM Kolkata</span>
+            </div>
+          </div>
+
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>Research — NUS Singapore</strong>
+              <span>IoT Systems · selective international program</span>
+            </div>
+          </div>
+
+          <div class="credential">
+            <div class="cred-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div class="cred-text">
+              <strong>F-1 · STEM OPT Eligible</strong>
+              <span>No sponsorship required for OPT period</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- ============================================================
-       CONTACT SECTION
-       ============================================================ -->
-  <section class="contact" id="contact">
-    <svg class="petal-cloud" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true">
-      <g fill="#d4c5ee"><ellipse cx="120" cy="90" rx="90" ry="28" transform="rotate(-22 120 90)"/><ellipse cx="860" cy="94" rx="118" ry="34" transform="rotate(18 860 94)"/><ellipse cx="690" cy="260" rx="140" ry="30" transform="rotate(-12 690 260)"/></g>
-      <g fill="#d4e8c2"><ellipse cx="360" cy="70" rx="95" ry="26" transform="rotate(34 360 70)"/><ellipse cx="250" cy="270" rx="125" ry="32" transform="rotate(-26 250 270)"/></g>
-    </svg>
-    <div class="container reveal">
-      <span class="section-label">Contact</span>
-      <h2>Let's build something alive.</h2>
-      <p>Open to ML engineering, SRE, cloud/platform, AI product, and research-aligned opportunities.</p>
-      <div class="contact-links">
-        <a href="mailto:amaji123@asu.edu">amaji123@asu.edu</a>
-        <a href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a>
+  <!-- CONTACT -->
+  <div id="contact">
+    <section>
+      <div class="section-header">
+        <p class="section-eyebrow">// contact</p>
+        <h2 class="section-title">Let's <em>build something</em></h2>
       </div>
-    </div>
-  </section>
+      <div class="contact-inner reveal">
+        <p>I'm actively looking for ML Engineer and SRE roles starting Spring 2027 (or internships sooner). If your team cares about observable, reproducible ML systems — let's talk.</p>
+        <div class="contact-links">
+          <a href="https://github.com/AnushkaMaji" target="_blank" class="btn-primary">GitHub</a>
+          <a href="mailto:amaji123@asu.edu" class="btn-ghost">Email</a>
+          <a href="https://www.linkedin.com/in/anushkamaji" target="_blank" class="btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </div>
 
-  <!-- ============================================================
-       FOOTER SECTION
-       ============================================================ -->
+  <!-- FOOTER -->
   <footer>
-    <svg class="footer-vine" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 42 C130 8 200 76 330 39 S520 11 650 42 S850 82 990 39 S1110 11 1200 42" fill="none" stroke="#d4e8c2" stroke-width="3" stroke-linecap="round"/>
-      <g stroke="#d4e8c2" stroke-width="1.8" fill="none">
-        <path d="M170 38 q-24 -16 -44 0 q23 11 44 0Z"/><path d="M430 40 q22 -19 45 -4 q-22 14 -45 4Z"/><path d="M760 48 q-20 -19 -45 -6 q20 16 45 6Z"/><path d="M1040 39 q22 -15 44 1 q-21 12 -44 -1Z"/>
-      </g>
-      <g>
-        <g transform="translate(245 43)" fill="#9370c0"><ellipse rx="8" ry="17" transform="rotate(0)"/><ellipse rx="8" ry="17" transform="rotate(72)"/><ellipse rx="8" ry="17" transform="rotate(144)"/><ellipse rx="8" ry="17" transform="rotate(216)"/><ellipse rx="8" ry="17" transform="rotate(288)"/><circle r="5" fill="#f5f0e8"/></g>
-        <g transform="translate(505 35)" fill="#8aab6e"><ellipse rx="7" ry="15" transform="rotate(0)"/><ellipse rx="7" ry="15" transform="rotate(72)"/><ellipse rx="7" ry="15" transform="rotate(144)"/><ellipse rx="7" ry="15" transform="rotate(216)"/><ellipse rx="7" ry="15" transform="rotate(288)"/><circle r="4" fill="#2a1440"/></g>
-        <g transform="translate(640 43)" fill="#d4c5ee"><ellipse rx="7" ry="16" transform="rotate(0)"/><ellipse rx="7" ry="16" transform="rotate(72)"/><ellipse rx="7" ry="16" transform="rotate(144)"/><ellipse rx="7" ry="16" transform="rotate(216)"/><ellipse rx="7" ry="16" transform="rotate(288)"/><circle r="4" fill="#3a1f52"/></g>
-        <g transform="translate(880 51)" fill="#9370c0"><ellipse rx="8" ry="17" transform="rotate(0)"/><ellipse rx="8" ry="17" transform="rotate(72)"/><ellipse rx="8" ry="17" transform="rotate(144)"/><ellipse rx="8" ry="17" transform="rotate(216)"/><ellipse rx="8" ry="17" transform="rotate(288)"/><circle r="5" fill="#f5f0e8"/></g>
-        <g transform="translate(1118 33)" fill="#8aab6e"><ellipse rx="6" ry="14" transform="rotate(0)"/><ellipse rx="6" ry="14" transform="rotate(72)"/><ellipse rx="6" ry="14" transform="rotate(144)"/><ellipse rx="6" ry="14" transform="rotate(216)"/><ellipse rx="6" ry="14" transform="rotate(288)"/><circle r="4" fill="#2a1440"/></g>
-        <circle cx="350" cy="44" r="4" fill="#d4c5ee"/><circle cx="720" cy="42" r="4" fill="#8aab6e"/><circle cx="965" cy="43" r="4" fill="#d4c5ee"/>
-      </g>
-    </svg>
-    <div class="container">
-      <div class="footer-row">
-        <div class="footer-name">Anushka Maji</div>
-        <div class="footer-links"><a href="mailto:amaji123@asu.edu">Email</a><a href="https://github.com/AnushkaMaji" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com/in/anushkamaji" target="_blank" rel="noreferrer">LinkedIn</a></div>
-      </div>
-      <div class="copyright">© 2026 Anushka Maji. Designed as a botanical systems portfolio.</div>
-    </div>
+    <div>© 2026 Anushka Maji</div>
+    <span>built with intention · deployed with terraform</span>
   </footer>
 
+</main>
 
+<script>
+  /* ── Butterfly Bézier Flight Animation ── */
+  (function() {
+    const canvas = document.getElementById('butterfly-canvas');
+    const ctx = canvas.getContext('2d');
 
-  <script>
-    /* ============================================================
-       BUTTERFLY FLIGHT AND LANDING SEQUENCE
-       ============================================================ */
-    const butterfly = document.getElementById('butterfly');
-    window.addEventListener('load', () => {
-      window.setTimeout(() => butterfly.classList.add('landed'), 4050);
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* Control point path for a looping Bézier flight */
+    function makePath() {
+      const W = canvas.width, H = canvas.height;
+      return [
+        [W*0.1,  H*0.3],
+        [W*0.3,  H*0.1],
+        [W*0.6,  H*0.4],
+        [W*0.85, H*0.2],
+        [W*0.75, H*0.6],
+        [W*0.5,  H*0.8],
+        [W*0.2,  H*0.65],
+        [W*0.1,  H*0.3],
+      ];
+    }
+
+    /* Evaluate cubic Bézier */
+    function bezierPoint(p0, p1, p2, p3, t) {
+      const mt = 1 - t;
+      return [
+        mt**3*p0[0] + 3*mt**2*t*p1[0] + 3*mt*t**2*p2[0] + t**3*p3[0],
+        mt**3*p0[1] + 3*mt**2*t*p1[1] + 3*mt*t**2*p2[1] + t**3*p3[1],
+      ];
+    }
+
+    const WINGS = [
+      { r: 16, ry: 10, color: 'rgba(201,184,216,0.55)' },
+      { r: 12, ry: 7,  color: 'rgba(143,168,136,0.45)' },
+    ];
+
+    let t = 0;
+    let path = makePath();
+    window.addEventListener('resize', () => { path = makePath(); });
+
+    function drawButterfly(x, y, angle, flapT) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+
+      const flapAngle = Math.sin(flapT * Math.PI * 2) * 0.4;
+
+      WINGS.forEach((w, wi) => {
+        const sign = wi === 0 ? 1 : -1;
+        [-1, 1].forEach(side => {
+          ctx.save();
+          ctx.scale(side, 1);
+          ctx.rotate(sign * flapAngle);
+          ctx.beginPath();
+          ctx.ellipse(w.r * 0.6, 0, w.r, w.ry, Math.PI * 0.25, 0, Math.PI * 2);
+          ctx.fillStyle = w.color;
+          ctx.fill();
+          ctx.restore();
+        });
+      });
+
+      /* Body */
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 1.5, 8, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(74,44,74,0.5)';
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    let lastX = 0, lastY = 0;
+    let flapPhase = 0;
+
+    function animate(ts) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      t = (t + 0.0012) % 1;
+      const seg = Math.floor(t * (path.length - 1));
+      const segT = (t * (path.length - 1)) - seg;
+
+      const p0 = path[Math.max(0, seg - 1)];
+      const p1 = path[seg];
+      const p2 = path[Math.min(path.length-1, seg + 1)];
+      const p3 = path[Math.min(path.length-1, seg + 2)];
+      const [x, y] = bezierPoint(p0, p1, p2, p3, segT);
+
+      const angle = Math.atan2(y - lastY, x - lastX);
+      lastX = x; lastY = y;
+
+      flapPhase = (flapPhase + 0.08) % 1;
+      drawButterfly(x, y, angle, flapPhase);
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  })();
+
+  /* ── Scroll-reveal (IntersectionObserver) ── */
+  const revealEls = document.querySelectorAll(
+    '.stat-item, .project-card, .section-header, .credential, .reveal'
+  );
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // stagger cards/credentials by index within their parent
+        const siblings = Array.from(entry.target.parentElement.children);
+        const idx = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = `${idx * 0.08}s`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.12 });
 
-    /* ============================================================
-       SCROLL REVEALS: SECTIONS AND PAPERS
-       ============================================================ */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /* ============================================================
-       PROJECT CARDS: STAGGERED SCROLL REVEAL
-       ============================================================ */
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.project-card');
-          cards.forEach((card, i) => {
-            window.setTimeout(() => card.classList.add('is-visible'), i * 110);
-          });
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-
-    const grid = document.querySelector('.project-grid');
-    if (grid) cardObserver.observe(grid);
-
-    /* ============================================================
-       BLOOMING SKILL TAGS
-       ============================================================ */
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const tags = entry.target.querySelectorAll('.skill-tag');
-          tags.forEach((tag, i) => {
-            window.setTimeout(() => tag.classList.add('is-visible'), i * 70);
-          });
-          skillObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.18 });
-
-    skillObserver.observe(document.getElementById('skillCloud'));
-  </script>
 </body>
 </html>
