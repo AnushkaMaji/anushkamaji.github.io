@@ -304,15 +304,24 @@
     .section-title em { font-style: italic; }
 
     /* ── PROJECTS GRID ── */
-    #projects {
+   #projects {
       padding: 7rem 2rem;
+      background: var(--plum);
+    }
+
+    #projects .section-eyebrow {
+      color: var(--lavender);
+    }
+
+    #projects .section-title {
+      color: var(--cream);
+    }
+
+    #projects .section-title em {
+      color: var(--lavender);
     }
 
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
 
     @media (max-width: 900px) {
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
